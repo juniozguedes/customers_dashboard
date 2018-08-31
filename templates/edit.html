@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{{url_for('show', pid=anunciante.pid)}}?_method=PATCH" method="POST">
+	<input type="text" name="pid" value="{{anunciante.pid}}">
+	<input type="text" name="partner" value="{{anunciante.partner}}">
+	<input type="text" name="description" value="{{anunciante.description}}">
+	<input type="text" name="role" value="{{anunciante.role}}">
+	<input type="text" name="extra" value="{{anunciante.extra}}">
+	<input type="text" name="liberada" value="atual:{{anunciante.liberada}}">
+	<input type="submit" value="Editar Anunciante">
+</form>
+{% endblock %}
