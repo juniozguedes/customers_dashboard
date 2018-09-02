@@ -1,0 +1,5 @@
+ROSA1 #b83c85
+ROXO ESCURO #632f6e
+Azul escuro fontes #1e2b6d
+Azul intermediario #396db2
+Azul Clarinho 	#4489d1
