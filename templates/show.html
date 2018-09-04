@@ -2,6 +2,7 @@
 {% block content %}
 <div class="container">
 	<div class="col-12 text-center">
+      <div></div>
       <h1>Mastertags & Pixel - Afilio</h1>
       <p>{{anunciante.partner}}</p>
     </div>
@@ -92,7 +93,7 @@
 		<div class="col-9">
 			<h3>Category</h3>
     	<span class="badge badge-primary">Tag genérica</span> :
-    	<code><span id="mastertag_category">&lt;script type="text/javascript" src=https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=category&id_partner={{anunciante.partner}}&id_category=<span class="tag_generica">#ID_DA_CATEGORIA#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+    	<code><span id="mastertag_category">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=category&id_partner={{anunciante.partner}}&id_category=<span class="tag_generica">#ID_DA_CATEGORIA#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
     </div>
     <div class="col-3">
       <a href="#"><i id="btnCopyCategory" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
@@ -262,9 +263,10 @@
     </div>
 	</div>
 </div>
+
 <hr>
 
-{% else %}
+{% elif anunciante.role == 'CPL' %}
 
 <div class="container">
   <div class="row">
@@ -295,7 +297,6 @@
               <h3>Parâmetros</h3>
               <hr>                 
               <h4>order_id:</h4><p>Deve ser preenchido com um ID ÚNICO, que não se repita, no final da validação, após a implementação, esse mesmo order_id deve ser comprovado via print (Do seu Google Analytics ou do seu sistema próprio de validação</p>
-              <h4>order_price:</h4><p>Deve ser populado com o preço do produto, sem vírgulas ou pontos separadores decimais, exemplo: Uma compra de R$ 100,50 ficaria order_price:10050 tudo junto.</p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -318,10 +319,10 @@
     </div>
     <div class="col-3">
       <a href="#"><i id="btnCopyHome" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
-      <a href="#" data-toggle="modal" data-target="#modal_mastertag_homepage_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#" data-toggle="modal" data-target="#modal_mastertag_homepage"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
 
       <!-- Modal Pixel de conversão -->
-      <div class="modal fade" id="modal_mastertag_homepage_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modal_mastertag_homepage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -350,18 +351,18 @@
 
   <div class="row">
     <div class="col-9">
-      <h3>Formularios</h3>
+      <h3>Basket</h3>
       <span class="badge badge-primary">Tag genérica</span> :
-        <div class="alert alert-secondary">            
-          <code><span id="mastertag_basket">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=basket&id_partner={{anunciante.partner}}&url_product=<span class="tag_generica">#URL_DO_PRODUTO#</span>"&gt;&lt;/script&gt;</span></code>
-        </div>
+      <div class="alert alert-secondary">        
+        <code><span id="mastertag_basket_cpl">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=basket&id_partner={{anunciante.partner}}&url_product=<span class="tag_generica">#URL_DO_PRODUTO#</span>"&gt;&lt;/script&gt;</span></code>
+      </div>
     </div>
     <div class="col-3">
-        <a href="#"><i id="btnCopyBasket" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
-        <a href="#" data-toggle="modal" data-target="#modal_mastertag_basket_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#"><i id="btnCopyBasketCpl" onclick="CopyToClipboard('mastertag_basket_cpl')" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#" data-toggle="modal" data-target="#modal_mastertag_basket_cpl"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
 
       <!-- Modal Pixel de conversão -->
-      <div class="modal fade" id="modal_mastertag_basket_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modal_mastertag_basket_cpl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -375,6 +376,13 @@
               <hr>
               <h3>Parâmetros</h3>
               <hr> 
+              <h4>product_id1:</h4><p> Inserir o ID do produto. Os ids devem ser separados por "," em casos de múltiplos id´s.</p>
+              <h4>Amount:</h4><p>Inserir o valor total da compra. (** Utilizar ponto como separador decimal. Ex.: 1990.90).</p>
+              <h4>transaction_id:</h4><p>Inserir o ID da transação.</p>
+              <h4>order_date:</h4><p>Inserir a data da compra do produto.</p>
+              <h4>order_status:</h4><p>Inserir "Completed" para confirmado ou "Pending" para pendente..</p>
+              <h4>customer_id:</h4><p>Inserir o ID do cliente.</p>                  
+              <h4>customer_type:</h4><p>Inserir "New" para novo cliente e "Old" para cliente antigo.</p>
               <h4>url_product:</h4><p>Deve ser populado com a variável que diz referência a página que a tag está implementada (categoria no caso da category), essa variável deve ser encodada (<a href="https://meyerweb.com/eric/tools/dencoder/">codificada</a>).</p>
             </div>
             <div class="modal-footer">
@@ -386,6 +394,7 @@
     </div>
   </div>
 
+
   <hr>
     
   <div class="row">
@@ -393,15 +402,15 @@
       <h3>Transaction</h3>
       <span class="badge badge-primary">Tag genérica</span> :
       <div class="alert alert-secondary">
-        <code><span id="mastertag_transaction">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=transaction&id_partner={{anunciante.partner}}&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+        <code><span id="mastertag_transaction_cpl">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=transaction&id_partner={{anunciante.partner}}&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
       </div>
     </div>
     <div class="col-3">
-      <a href="#"><i id="btnCopyTransaction" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
-      <a href="#" data-toggle="modal" data-target="#modal_mastertag_transaction_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#"><i id="btnCopyTransactionCpl" onclick="CopyToClipboard('mastertag_transaction_cpl')" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#" data-toggle="modal" data-target="#modal_mastertag_transaction_cpl"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
 
       <!-- Modal Pixel de conversão -->
-      <div class="modal fade" id="modal_mastertag_transaction_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modal_mastertag_transaction_cpl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -429,10 +438,52 @@
     </div>
   </div>
 </div>
-    {% endif %}
+
+{% else %}
+
+<div class="row">
+    <div class="col-9">
+      <h3>Pixel de Conversão</h3>
+      <span class="badge badge-info">Tag de conversão</span> :
+      <code><span id="pixel_conversao_cpa">&lt;img src="https://secure.afilio.com.br/sale.php?pid={{anunciante.pid}}&order_id=<span class="pixel_conversao">#UNIQUE_ID#</span>&order_price=<span class="pixel_conversao">#PRIX#</span>" border="0" width="1" height="1"/&gt;</span></code>
+    </div>
+    <div class="col-3">
+      <a href="#"><i id="btnCopy" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px; color:#26a1b6;"></i></a>
+      <a href="#" data-toggle="modal" data-target="#modal_pixel_conversao_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px; color:#26a1b6;"></i></a>
+
+      <!-- Modal Pixel de conversão -->
+      <div class="modal fade" id="modal_pixel_conversao_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Pixel de conversão</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Deve ser inserido na página de sucesso (Thank You). O mesmo fará a conversão para a nossa plataforma!</p>
+              <hr>
+              <h3>Parâmetros</h3>
+              <hr>                 
+              <h4>order_id:</h4><p>Deve ser preenchido com um ID ÚNICO, que não se repita, no final da validação, após a implementação, esse mesmo order_id deve ser comprovado via print (Do seu Google Analytics ou do seu sistema próprio de validação</p>
+              <h4>order_price:</h4><p>Deve ser populado com o preço do produto, sem vírgulas ou pontos separadores decimais, exemplo: Uma compra de R$ 100,50 ficaria order_price:10050 tudo junto.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+{% endif %}
 
 		<!--<h1>See some info about {{anunciante.partner}}</h1>
 		{{anunciante.pid}} {{anunciante.description}} {{anunciante.role}}
 		<a href="{{url_for('edit', pid=anunciante.pid)}}">Edit Anunciante</a> -->
+}
 <script src="{{url_for('static', filename='js/script.js')}}"></script>
+
 {% endblock %}

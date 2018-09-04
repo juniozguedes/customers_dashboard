@@ -37,7 +37,10 @@ def root():
 def index():
     if request.method == 'POST':
         #adicionar verificador de duplicidade
-        novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], request.form['role'],request.form['extra'])
+        role = request.form['role']
+        if role == 'cpl' or 'cpa':
+            role = role.upper()
+        novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], role, request.form['extra'])
         db.session.add(novo_anunciante)
         db.session.commit()
         return redirect(url_for('index'))

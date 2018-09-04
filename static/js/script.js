@@ -222,25 +222,32 @@ $btnCopyTransaction.addEventListener('click', function(ev) {
   copyToClipboardTransaction(secretInfoTransaction);
 });
 
-var $bodyCpl = document.getElementsByTagName('body')[0];
-var $btnCopyCpl = document.getElementById('btnCopyCpl');
-var secretInfoCpl = document.getElementById('pixel_conversao_cpl').innerHTML;
-var resCpl = secretInfoCpl.replace("&lt;","<")
-var res2Cpl = resCpl.replace("&gt;",">")
-var res3Cpl = res2Cpl.replace('<span class="pixel_conversao">','')
-var res4Cpl = res3Cpl.replace('</span>','')
-var res5Cpa = res4Cpl.replace('<span class="pixel_conversao">','')
-var res6Cpl = res5Cpl.replace('</span>','')
-var res7Cpl = res6Cpl.replace('amp;','');
-var res8Cpl = res7Cpl.replace('amp;','');
-var copyToClipboardCpl = function(secretInfoCpl) {
-  var $tempInputCpl = document.createElement('INPUT');
-  $bodyCpl.appendChild($tempInputCpl);
-  $tempInputCpl.setAttribute('value', res8Cpl)
-  $tempInputCpl.select();
-  document.execCommand('copy');
-  $bodyCpl.removeChild($tempInputCpl);
-}
-$btnCopyCpl.addEventListener('click', function(ev) {
-  copyToClipboardCpl(secretInfoCpl);
-});
+function CopyToClipboard(containerid) {
+if (document.selection) { 
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById("mastertag_basket_cpl"));
+    range.select().createTextRange();
+    document.execCommand("copy"); 
+
+} else if (window.getSelection) {
+    var range = document.createRange();
+     range.selectNode(document.getElementById("mastertag_basket_cpl"));
+     window.getSelection().addRange(range);
+     document.execCommand("copy");
+     alert("Tag copiada!") 
+}}
+
+function CopyToClipboard(containerid) {
+if (document.selection) { 
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById("mastertag_transaction_cpl"));
+    range.select().createTextRange();
+    document.execCommand("copy"); 
+
+} else if (window.getSelection) {
+    var range = document.createRange();
+     range.selectNode(document.getElementById("mastertag_transaction_cpl"));
+     window.getSelection().addRange(range);
+     document.execCommand("copy");
+     alert("<div class='alert alert-success'><strong>Success!</strong> You should <a href='#' class='alert-link'>read this message</a>.</div>") 
+}}
