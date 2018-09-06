@@ -251,3 +251,16 @@ if (document.selection) {
      document.execCommand("copy");
      alert("<div class='alert alert-success'><strong>Success!</strong> You should <a href='#' class='alert-link'>read this message</a>.</div>") 
 }}
+
+// Script snackbar
+
+function popSucesso() {
+    // Get the snackbar DIV
+    var x = document.getElementById("sucesso");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}

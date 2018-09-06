@@ -265,8 +265,8 @@
 </div>
 
 <hr>
-
-{% elif anunciante.role == 'CPL' %}
+{% endif %}
+{% if anunciante.role == 'CPL' %}
 
 <div class="container">
   <div class="row">
@@ -438,52 +438,15 @@
     </div>
   </div>
 </div>
-
-{% else %}
-
-<div class="row">
-    <div class="col-9">
-      <h3>Pixel de Conversão</h3>
-      <span class="badge badge-info">Tag de conversão</span> :
-      <code><span id="pixel_conversao_cpa">&lt;img src="https://secure.afilio.com.br/sale.php?pid={{anunciante.pid}}&order_id=<span class="pixel_conversao">#UNIQUE_ID#</span>&order_price=<span class="pixel_conversao">#PRIX#</span>" border="0" width="1" height="1"/&gt;</span></code>
-    </div>
-    <div class="col-3">
-      <a href="#"><i id="btnCopy" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px; color:#26a1b6;"></i></a>
-      <a href="#" data-toggle="modal" data-target="#modal_pixel_conversao_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px; color:#26a1b6;"></i></a>
-
-      <!-- Modal Pixel de conversão -->
-      <div class="modal fade" id="modal_pixel_conversao_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">Pixel de conversão</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>Deve ser inserido na página de sucesso (Thank You). O mesmo fará a conversão para a nossa plataforma!</p>
-              <hr>
-              <h3>Parâmetros</h3>
-              <hr>                 
-              <h4>order_id:</h4><p>Deve ser preenchido com um ID ÚNICO, que não se repita, no final da validação, após a implementação, esse mesmo order_id deve ser comprovado via print (Do seu Google Analytics ou do seu sistema próprio de validação</p>
-              <h4>order_price:</h4><p>Deve ser populado com o preço do produto, sem vírgulas ou pontos separadores decimais, exemplo: Uma compra de R$ 100,50 ficaria order_price:10050 tudo junto.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>  
-
 {% endif %}
+{% if anunciante.role == 'CPC' %}
+<div class="container">
+  <div>Não enviamos Tags para campanhas CPC!</div>
+</div>
+{% endif %}
+
 
 		<!--<h1>See some info about {{anunciante.partner}}</h1>
 		{{anunciante.pid}} {{anunciante.description}} {{anunciante.role}}
 		<a href="{{url_for('edit', pid=anunciante.pid)}}">Edit Anunciante</a> -->
-}
-<script src="{{url_for('static', filename='js/script.js')}}"></script>
-
 {% endblock %}

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask, request, redirect, url_for, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
@@ -20,13 +21,15 @@ class Anunciante(db.Model):
     entrada = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     liberada = db.Column(db.Boolean, nullable=False, default=False)
     saida = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    multitarifa = db.Column(db.Boolean, nullable=False)
     extra = db.Column(db.Text)
 
-    def __init__(self, pid, partner, description, role, extra):
+    def __init__(self, pid, partner, description, role, multitarifa, extra):
         self.pid = pid
         self.partner = partner
         self.description = description
         self.role = role
+        self.multitarifa = multitarifa
         self.extra = extra
 
 @app.route('/')
@@ -36,11 +39,20 @@ def root():
 @app.route('/students', methods=['POST','GET'])
 def index():
     if request.method == 'POST':
-        #adicionar verificador de duplicidade
         role = request.form['role']
-        if role == 'cpl' or 'cpa':
-            role = role.upper()
-        novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], role, request.form['extra'])
+        if role == '1':
+            role = 'CPA'
+        elif role =='2':
+            role = 'CPL'
+        else:
+            role = 'CPC'
+        multitarifa = request.form['multitarifa']
+        if multitarifa == '1':
+            multitarifa = True
+        else:
+            multitarifa = False
+        print(multitarifa)
+        novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], role, False, request.form['extra'])
         db.session.add(novo_anunciante)
         db.session.commit()
         return redirect(url_for('index'))
