@@ -23,14 +23,16 @@ class Anunciante(db.Model):
     saida = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     multitarifa = db.Column(db.Boolean, nullable=False)
     extra = db.Column(db.Text)
+    ficha = db.Column(db.Text)
 
-    def __init__(self, pid, partner, description, role, multitarifa, extra):
+    def __init__(self, pid, partner, description, role, multitarifa, extra, ficha):
         self.pid = pid
         self.partner = partner
         self.description = description
         self.role = role
         self.multitarifa = multitarifa
         self.extra = extra
+        self.ficha = ficha
 
 @app.route('/')
 def root():
@@ -52,7 +54,7 @@ def index():
         else:
             multitarifa = False
         print(multitarifa)
-        novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], role, False, request.form['extra'])
+        novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], role, False, request.form['extra'], request.form['ficha'])
         db.session.add(novo_anunciante)
         db.session.commit()
         return redirect(url_for('index'))
@@ -70,15 +72,27 @@ def show(pid):    #We passed some id for the user to specify which id will be sh
         novo_anunciante.pid = request.form['pid']
         novo_anunciante.partner = request.form['partner']
         novo_anunciante.description = request.form['description']
-        novo_anunciante.role = request.form['role']
+        role = request.form['role']
+        if role == '1':
+            novo_anunciante.role = 'CPA'
+        elif role =='2':
+            novo_anunciante.role = 'CPL'
+        else:
+            novo_anunciante.role = 'CPC'
         novo_anunciante.extra = request.form['extra']
+        multitarifa = request.form['multitarifa']
+        if multitarifa == '1':
+            novo_anunciante.multitarifa = True
+        else:
+            novo_anunciante.multitarifa = False
         if request.form['liberada'] == 1 or '1': 
             novo_anunciante.liberada = True
             novo_anunciante.saida = datetime.utcnow()
             db.session.add(novo_anunciante)
             db.session.commit()
         else:
-            print("Erro")            
+            print("Erro")
+        novo_anunciante.ficha = request.form['ficha']            
         db.session.add(novo_anunciante)
         db.session.commit() 
         return redirect(url_for('index'))

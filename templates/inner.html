@@ -1,13 +1,78 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container-fluid">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+	    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">Link</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+</div>
+
 <div class="container">
 	<div class="col-12 text-center">
       <h1>Resumo estratégico - Afilio</h1>
       <p>{{anunciante.description}}</p>
     </div>
 </div>
-
-
-
+<div class="container-fluid">
+	<div class="row">	
+		<div class="col-6 alert alert-secondary">
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+					<h5 class="header_cpa">PID: {{anunciante.pid}}</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+					<h5 class="header_cpa">Nome: {{anunciante.description}} </h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+					<h5 class="header_cpa">Negociação: {{anunciante.role}}</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+					<h5 class="header_cpa">Cadastro: {{anunciante.entrada}}</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+					<h5 class="header_cpa">Liberada? {{anunciante.liberada}}</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+					<h5 class="header_cpa">Data de liberação: {{anunciante.saida}}</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+					<h5 class="header_cpa">Multitarifa: {{anunciante.multitarifa}}</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+					<h5 class="header_cpa">Extra info: {{anunciante.extra}}</h5>
+				</div>
+			</div>
+		</div>
+		<div class="col-6 alert alert-secondary"style="text-align: center;">
+			<h5>Ficha de cadastro</h5><h5>{{anunciante.ficha}}</h5>
+		</div>
+	</div>
+</div>
 <script src="{{url_for('static', filename='js/script.js')}}"></script>
 {% endblock %}
