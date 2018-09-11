@@ -3,6 +3,7 @@ from flask import Flask, request, redirect, url_for, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
 from datetime import datetime
+from sqlalchemy.dialects.postgresql import ARRAY
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres:///anunciantes"
@@ -24,7 +25,9 @@ class Anunciante(db.Model):
     multitarifa = db.Column(db.Boolean, nullable=False)
     extra = db.Column(db.Text)
     ficha = db.Column(db.Text)
-
+    tags = db.Column(ARRAY(db.Text))
+    remid = db.Column(ARRAY(db.Text))
+    
     def __init__(self, pid, partner, description, role, multitarifa, extra, ficha):
         self.pid = pid
         self.partner = partner
