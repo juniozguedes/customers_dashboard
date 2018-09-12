@@ -469,16 +469,13 @@
       <h4 class="header_cpa">Pixel de Conversão</h4>
       <span class="badge badge-info">Tag de conversão Multitarifa</span>
 
-      {% for tag in anunciante.tags %}
-      {% for remid in anunciante.remid %}
-
+    {% for tag, remid in anunciante.tags, anunciante.remid %}
       <div class="alert alert-secondary">
         <p>Protocolo HTTPS multitarifa: <span style="font-style: italic;">{{tag}}</span></p>
         <code><span id="pixel_conversao_cpa">&lt;img src="https://secure.afilio.com.br/sale.php?pid={{anunciante.pid}}&order_id=<span class="pixel_conversao">#UNIQUE_ID#</span>&order_price=<span class="pixel_conversao">#PRIX#</span>&remid={{remid}}" border="0" width="1" height="1"/&gt;</span></code>
       </div>
 
-      {% endfor %}
-      {% endfor %}
+    {% endfor %}
 
     </div>
     <div class="col-3">
