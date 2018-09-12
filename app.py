@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import itertools
 from flask import Flask, request, redirect, url_for, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
@@ -71,6 +72,7 @@ def new():
 def show(pid):    #We passed some id for the user to specify which id will be shown
     #anunc = Anunciante() 
     novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
+    dict_test = {}
     if request.method == 'PATCH':
         novo_anunciante.pid = request.form['pid']
         novo_anunciante.partner = request.form['partner']
@@ -105,7 +107,11 @@ def show(pid):    #We passed some id for the user to specify which id will be sh
         db.session.commit()
         return redirect(url_for('index'))
 
-    return render_template('show.html', anunciante = novo_anunciante) 
+    #resp = itertools.izip_longest(novo_anunciante.tags, novo_anunciante.remid)
+    for tag, remid in itertools.izip_longest(novo_anunciante.tags, novo_anunciante.remid):
+        dict_test[tag] = remid
+
+    return render_template('show.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
 
 @app.route('/students/<int:pid>/edit')
 def edit(pid):
