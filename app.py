@@ -37,6 +37,8 @@ class Anunciante(db.Model):
         self.multitarifa = multitarifa
         self.extra = extra
         self.ficha = ficha
+        self.tags = ['0','0']
+        self.remid = ['0','0']
 
 @app.route('/')
 def root():
@@ -107,7 +109,6 @@ def show(pid):    #We passed some id for the user to specify which id will be sh
         db.session.commit()
         return redirect(url_for('index'))
 
-    #resp = itertools.izip_longest(novo_anunciante.tags, novo_anunciante.remid)
     for tag, remid in itertools.izip_longest(novo_anunciante.tags, novo_anunciante.remid):
         dict_test[tag] = remid
 
