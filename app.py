@@ -60,7 +60,7 @@ def index():
         else:
             multitarifa = False
         print(multitarifa)
-        novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], role, False, request.form['extra'], request.form['ficha'])
+        novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], role, multitarifa, request.form['extra'], request.form['ficha'])
         db.session.add(novo_anunciante)
         db.session.commit()
         return redirect(url_for('index'))
