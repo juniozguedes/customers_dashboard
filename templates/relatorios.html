@@ -1,0 +1,10 @@
+{% extends 'public_base.html' %}
+{% block content %}
+
+{% for anunciante in anunciantes %}
+{{anunciante.pid}}
+{{anunciante.description}}
+
+{% endfor %}
+
+{% endblock %}

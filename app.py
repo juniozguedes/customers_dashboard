@@ -72,7 +72,6 @@ def new():
 
 @app.route('/students/<int:pid>', methods=["GET", "PATCH", "DELETE"]) #We defined the page that will retrieve some info
 def show(pid):    #We passed some id for the user to specify which id will be shown
-    #anunc = Anunciante() 
     novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
     dict_test = {}
     if request.method == 'PATCH':
@@ -122,7 +121,11 @@ def edit(pid):
 @app.route('/anunciantes/<int:pid>/inner', methods=["GET"]) #We defined the page that will retrieve some info
 def inner(pid):    #We passed some id for the user to specify which id will be shown
     novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
-    return render_template('inner.html', anunciante = novo_anunciante) 
+    return render_template('inner.html', anunciante = novo_anunciante)
+
+@app.route('/anunciantes/relatorios/liberadas')
+def liberadas():
+    return render_template('relatorios.html', anunciantes=Anunciante.query.filter_by(liberada=True)) 
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
