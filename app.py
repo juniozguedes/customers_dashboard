@@ -1,15 +1,35 @@
 # -*- coding: utf-8 -*-
 import itertools
-from flask import Flask, request, redirect, url_for, render_template
+from flask import Flask, request, redirect, url_for, render_template, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
 from datetime import datetime
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from urlparse import urlparse, urljoin
 from sqlalchemy.dialects.postgresql import ARRAY
 
 app = Flask(__name__)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres:///anunciantes"
+app.config['SECRET_KEY'] = 'thisissecret'
+app.config['USE_SESSION_FOR_NEXT'] = True
+
 modus = Modus(app)
 db = SQLAlchemy(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+login_manager.login_message = 'You really need to login!'
+
+class User(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(30), unique=True)
+    password = db.Column(db.String(20))
+    role = db.Column(db.String(20))
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 class Anunciante(db.Model):
 
@@ -37,15 +57,50 @@ class Anunciante(db.Model):
         self.multitarifa = multitarifa
         self.extra = extra
         self.ficha = ficha
-        self.tags = ['0','0']
-        self.remid = ['0','0']
+        self.tags = ['t_0','t_1']
+        self.remid = ['t_1','t_1']
 
 @app.route('/')
 def root():
     return redirect(url_for('index'))
 
-@app.route('/students', methods=['POST','GET'])
-def index():
+@app.route('/afbase/login')
+def login():
+    #session['next'] = request.args.get('next')
+    return render_template('login.html')
+
+def is_safe_url(target):
+    ref_url = urlparse(request.host_url)
+    test_url = urlparse(urljoin(request.host_url,target))
+    return test_url.scheme in ('http','https') and \
+        ref_url.netloc == test_url.netloc
+
+@app.route('/logmein', methods=['POST'])
+def logmein():
+    username = request.form['username']
+
+    user = User.query.filter_by(username=username).first()
+
+    if not user:
+        return '<h1>User not found </h1>'
+
+    login_user(user, remember=True)
+
+    if 'next' in session:
+        next = session['next']
+
+        if is_safe_url(next):
+            return redirect(next)
+
+@app.route('/afbase/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('afbase'))
+
+@app.route('/afbase', methods=['POST','GET'])
+@login_required
+def afbase():
     if request.method == 'POST':
         role = request.form['role']
         if role == '1':
@@ -63,14 +118,14 @@ def index():
         novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], role, multitarifa, request.form['extra'], request.form['ficha'])
         db.session.add(novo_anunciante)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('afbase'))
     return render_template('index.html', anunciantes = Anunciante.query.all())
 
-@app.route('/students/new')
+@app.route('/afbase/new')
 def new():
     return render_template('new.html')
 
-@app.route('/students/<int:pid>', methods=["GET", "PATCH", "DELETE"]) #We defined the page that will retrieve some info
+@app.route('/afbase/<int:pid>', methods=["GET", "PATCH", "DELETE"]) #We defined the page that will retrieve some info
 def show(pid):    #We passed some id for the user to specify which id will be shown
     novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
     dict_test = {}
@@ -118,14 +173,19 @@ def edit(pid):
     anunciante = Anunciante.query.filter_by(pid=pid).first()
     return render_template('edit.html', anunciante = anunciante)
 
-@app.route('/anunciantes/<int:pid>/inner', methods=["GET"]) #We defined the page that will retrieve some info
+@app.route('/afbase/<int:pid>/inner', methods=["GET"]) #We defined the page that will retrieve some info
 def inner(pid):    #We passed some id for the user to specify which id will be shown
     novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
     return render_template('inner.html', anunciante = novo_anunciante)
 
-@app.route('/anunciantes/relatorios/liberadas')
+@app.route('/afbase/relatorios/liberadas')
 def liberadas():
     return render_template('relatorios.html', anunciantes=Anunciante.query.filter_by(liberada=True)) 
+
+@app.route('/home')
+@login_required
+def home():
+    return 'The current user is' + current_user.username
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)

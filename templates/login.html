@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+	<h1>login</h1>
+	<form action="{{url_for('logmein')}}" method="POST">
+		<p>Multipass <input type="password" name="username"></p>
+		<input type="submit">
+	</form>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+	<ul class="flashes">
+	{% for message in messages %}
+		<li>{{message}}</li>
+	{% endfor %}
+	</ul>
+{% endif %}
+{% endwith %}
+</div>
+{% endblock %}
