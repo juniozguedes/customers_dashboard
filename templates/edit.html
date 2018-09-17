@@ -26,8 +26,16 @@
 			</select>
 		</div>
 		<div class="col-12 form_padding">
-			<input type="text" name="liberada" value="atual:{{anunciante.liberada}}">
+			<select class="custom-select" name="liberada">
+				<option selected>Liberada?</option>
+				<option value="1">Sim</option>
+				<option value="2">Não</option>
+			</select>
+			status atual: {{anunciante.liberada}}
 		</div>
+		<!--<div class="col-12 form_padding">
+			<input type="text" name="liberada" value="atual:{{anunciante.liberada}}">
+		</div>-->
 		<div class="col-12 form_padding">
 			<input type="text" name="ficha" value="{{anunciante.ficha}}">
 		</div>
