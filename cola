@@ -33,3 +33,10 @@ primeira tag
 111111111111111
 segunda tag
 222222222222
+
+Now, backing-up a PostgreSQL database from a bash shell is pretty easy. Just invoke pg_dump like this:
+
+pg_dump -h localhost -U postgres my_database
+You’ll also want to compress your backup. You can easily save a lot of disk space by gzipping your dump file:
+
+pg_dump -h localhost -U postgres my_database | gzip > backup.gz

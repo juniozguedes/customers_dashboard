@@ -4,16 +4,22 @@ from app import db
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import ARRAY
 
+from flask_migrate import Migrate
+
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login' #if unauthorized, redirects to login
 login_manager.login_message = 'You need to login!'
+
+migrate = Migrate(app, db)
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(20))
     role = db.Column(db.String(20))
+    extra = db.Column(db.String(20))
 
 @login_manager.user_loader
 def load_user(user_id):
