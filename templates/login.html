@@ -3,7 +3,7 @@
 <div class="container">
 	<h1>login</h1>
 	<form action="{{url_for('logmein')}}" method="POST">
-		<p>Multipass <input type="password" name="username"></p>
+		<p>Multipass <input type="password" name="password"></p>
 		<input type="submit">
 	</form>
 {% with messages = get_flashed_messages() %}

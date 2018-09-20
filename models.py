@@ -46,4 +46,4 @@ class Anunciante(db.Model):
         self.extra = extra
         self.ficha = ficha
         self.tags = ['t_0','t_1']
-        self.remid = ['t_1','t_1']
+        self.remid = ['t_0','t_1']

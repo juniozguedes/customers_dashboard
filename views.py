@@ -24,9 +24,9 @@ def is_safe_url(target):
 
 @app.route('/logmein', methods=['POST'])
 def logmein():
-    username = request.form['username']
+    password = request.form['password']
 
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(password=password).first()
 
     if not user:
         return '<h1>User not found </h1>'
@@ -66,16 +66,24 @@ def afbase():
         db.session.add(novo_anunciante)
         db.session.commit()
         return redirect(url_for('afbase'))
-    return render_template('index.html', anunciantes = Anunciante.query.all())
+    if current_user.role == 'admin':
+    	return render_template('index.html', anunciantes = Anunciante.query.all())
+    if current_user.role == 'opec':
+    	return render_template('indexopec.html', anunciantes = Anunciante.query.all())
 
 @app.route('/afbase/new')
+@login_required
 def new():
-    return render_template('new.html')
+    if current_user.role == 'opec':
+    	return render_template('erro.html')
+    elif current_user.role == 'admin':
+    	return render_template('new.html')
 
-@app.route('/afbase/<int:pid>', methods=["GET", "PATCH", "DELETE"]) #We defined the page that will retrieve some info
-def show(pid):    #We passed some id for the user to specify which id will be shown
+@app.route('/afbase/'+str(range(15))+'<int:pid>'+str(range(15)), methods=["GET", "PATCH", "DELETE"]) #We defined the page that will retrieve some info
+def show(pid):
     novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
     dict_test = {}
+
     if request.method == 'PATCH':
         novo_anunciante.pid = request.form['pid']
         novo_anunciante.partner = request.form['partner']
@@ -85,20 +93,20 @@ def show(pid):    #We passed some id for the user to specify which id will be sh
             novo_anunciante.role = 'CPA'
         elif role =='2':
             novo_anunciante.role = 'CPL'
-        else:
+        elif role == '3':
             novo_anunciante.role = 'CPC'
         novo_anunciante.extra = request.form['extra']
         multitarifa = request.form['multitarifa']
         if multitarifa == '1':
             novo_anunciante.multitarifa = True
-        else:
+        elif multitarifa == '2':
             novo_anunciante.multitarifa = False
         if request.form['liberada'] == '1': 
             novo_anunciante.liberada = True
             novo_anunciante.saida = datetime.utcnow()
             db.session.add(novo_anunciante)
             db.session.commit()
-        else:
+        if request.form['liberada'] == '2':
             novo_anunciante.liberada = False
             db.session.add(novo_anunciante)
             db.session.commit()
@@ -117,21 +125,36 @@ def show(pid):    #We passed some id for the user to specify which id will be sh
 
     return render_template('show.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
 
-@app.route('/students/<int:pid>/edit')
+@app.route('/afbase/<int:pid>/edit')
+@login_required
 def edit(pid):
     anunciante = Anunciante.query.filter_by(pid=pid).first()
-    return render_template('edit.html', anunciante = anunciante)
+    if current_user.role == 'opec':
+    	return render_template('erro.html')
+    elif current_user.role == 'admin':
+    	return render_template('edit.html', anunciante = anunciante)
 
 @app.route('/afbase/<int:pid>/inner', methods=["GET"]) #We defined the page that will retrieve some info
+@login_required
 def inner(pid):    #We passed some id for the user to specify which id will be shown
     novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
     return render_template('inner.html', anunciante = novo_anunciante)
 
 @app.route('/afbase/relatorios/liberadas')
+@login_required
 def liberadas():
     return render_template('relatorios.html', anunciantes=Anunciante.query.filter_by(liberada=True)) 
 
 @app.route('/home')
 @login_required
 def home():
-    return 'The current user is' + current_user.username
+	u = current_user
+    	return (u.password)
+
+@app.route('/searcher', methods=['POST'])
+@login_required
+def searcher():
+    pid = request.form['pid']
+    pid = int(pid)
+    novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
+    return redirect(url_for('show', pid=pid))
