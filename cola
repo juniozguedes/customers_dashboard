@@ -40,3 +40,22 @@ pg_dump -h localhost -U postgres my_database
 You’ll also want to compress your backup. You can easily save a lot of disk space by gzipping your dump file:
 
 pg_dump -h localhost -U postgres my_database | gzip > backup.gz
+
+
+===
+
+Sugest:
+
+SHA 
+
+
+VERSÃO DO SHA*
+
+
+PAGINAÇÃO
+
+FOrmatação Ficha de cadastro
+
+
+VueJS
+

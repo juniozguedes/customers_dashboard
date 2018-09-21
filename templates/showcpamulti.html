@@ -1,0 +1,277 @@
+{% extends 'public_base.html' %}
+{% block content %}
+<div class="container">
+	<div class="col-12 text-center">
+      <div></div>
+      <h1>Mastertags & Pixel - Afilio</h1>
+      <p>{{anunciante.partner}}</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="header_cpa">Pixel de Conversão</h4>
+            <span class="badge badge-info">Tag de conversão Multitarifa</span>
+
+    {% for tag, remid in itertools_resp.iteritems() %}
+
+            <div class="alert alert-secondary">
+                <p>Protocolo HTTPS multitarifa: <span style="font-style: italic;">{{tag|e}}</span></p>
+                <code><span id="pixel_conversao_cpa">&lt;img src="https://secure.afilio.com.br/sale.php?pid={{anunciante.pid}}&order_id=<span class="pixel_conversao">#UNIQUE_ID#</span>&order_price=<span class="pixel_conversao">#PRIX#</span>&remid={{remid|e}}" border="0" width="1" height="1"/&gt;</span></code>
+            </div>
+    {% endfor %}
+        </div>
+    </div>
+
+    <!-- Modal Pixel de conversão -->
+    <div class="modal fade" id="modal_pixel_conversao_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Pixel de conversão</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <p>Deve ser inserido na página de sucesso (Thank You). O mesmo fará a conversão para a nossa plataforma!</p>
+              <hr>
+              <h3>Parâmetros</h3>
+              <hr>                 
+              <h4>order_id:</h4><p>Deve ser preenchido com um ID ÚNICO, que não se repita, no final da validação, após a implementação, esse mesmo order_id deve ser comprovado via print (Do seu Google Analytics ou do seu sistema próprio de validação</p>
+              <h4>order_price:</h4><p>Deve ser populado com o preço do produto, sem vírgulas ou pontos separadores decimais, exemplo: Uma compra de R$ 100,50 ficaria order_price:10050 tudo junto.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <hr>
+
+    <div class="row">
+        <div class="col-9">
+            <h4 class="header_cpa">Homepage</h4>
+            <span class="badge badge-primary">Tag Genérica</span>
+            <div class="alert alert-secondary">
+                <code><span id="mastertag_homepage">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=homepage&id_partner={{anunciante.partner}}&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+            </div>
+        </div>
+        <div class="col-3">
+            <a href="#"><i id="btnCopyHome" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+            <a href="#" data-toggle="modal" data-target="#modal_mastertag_homepage_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+
+            <!-- Modal Pixel de conversão -->
+            <div class="modal fade" id="modal_mastertag_homepage_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Mastertag Homepage</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Deve ser inserida na página inicial (Landing). !</p>
+                            <hr>
+                            <h3>Parâmetros</h3>
+                            <hr>                         
+                            <h4>url_product:</h4><p>Deve ser populado com a variável que diz referência a página que a tag está implementada (homepage no caso da home), essa variável deve ser encodada (<a href="https://meyerweb.com/eric/tools/dencoder/">codificada</a>).</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <hr>
+
+  <div class="row">
+        <div class="col-9">
+            <h4 class="header_cpa">Category</h4>
+        <span class="badge badge-primary">Tag Genérica</span>
+      <div class="alert alert-secondary">
+         <code><span id="mastertag_category">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=category&id_partner={{anunciante.partner}}&id_category=<span class="tag_generica">#ID_DA_CATEGORIA#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+      </div>
+    </div>
+    <div class="col-3">
+      <a href="#"><i id="btnCopyCategory" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+        <a href="#" data-toggle="modal" data-target="#modal_mastertag_category_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+
+            <!-- Modal Pixel de conversão -->
+            <div class="modal fade" id="modal_mastertag_category_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Mastertag Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 <p>Deve ser inserida na página de categoria!</p>
+                 <hr>
+                 <h3>Parâmetros</h3>
+                 <hr>                         
+                 <h4>url_product:</h4><p>Deve ser populado com a variável que diz referência a página que a tag está implementada (categoria no caso da category), essa variável deve ser encodada (<a href="https://meyerweb.com/eric/tools/dencoder/">codificada</a>).</p>
+                 <h4>id_category:</h4><p>Deve ser populado com o ID da categoria em questão.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    </div>
+
+  <hr>
+
+  <div class="row">
+        <div class="col-9">
+            <h4 class="header_cpa">Product</h4>
+        <span class="badge badge-primary">Tag Genérica</span>
+      <div class="alert alert-secondary">
+         <code><span id="mastertag_product">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=product&id_partner={{anunciante.partner}}&product_id1=<span class="tag_generica">#ID_DO_PRODUTO#</span>&id_category=<span class="tag_generica">#ID_DA_CATEGORIA#</span>&stock=<span class="tag_generica">#ESTOQUE#</span>&product_sku=<span class="tag_generica">#SKU_DO_PRODUTO#</span>&product_name=<span class="tag_generica">#NOME_DO_PRODUTO#</span>&product_desc=<span class="tag_generica">#DESCRICAO_DO_PRODUTO#</span>&product_photo=<span class="tag_generica">#IMAGEM_DO_PRODUTO#</span>&price1=<span class="tag_generica">#PRECO_ATUAL#</span>&price2=<span class="tag_generica">#PRECO_ORIGINAL#</span>&product_currency=<span class="tag_generica">#MOEDA_DA_TRANSACAO#</span>&url_product=#<span class="tag_generica">URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+      </div>
+    </div>
+    <div class="col-3">
+        <a href="#"><i id="btnCopyProduct" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+        <a href="#" data-toggle="modal" data-target="#modal_mastertag_product_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+
+            <!-- Modal Pixel de conversão -->
+            <div class="modal fade" id="modal_mastertag_product_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Mastertag Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 <p>Deve ser inserida na página de produto!</p>
+                 <hr>
+                 <h3>Parâmetros</h3>
+                 <hr>                           
+                 <h4>product_id1:</h4><p>ID do produto</p>
+                 <h4>id_category:</h4><p>Deve ser populado com o ID da categoria em questão.</p>
+                 <h4>stock:</h4><p>A ser preenchido com "1" para produto em estoque ou "0" para produto esgotado.</p>
+                 <h4>product_sku:</h4><p>A ser preenchido com a sku do produto.</p>
+                 <h4>product_name:</h4><p>Inserir o nome do produto.</p>                          
+                 <h4>product_desc:</h4><p>Inserir a descriação do produto.(Não deve conter tags html na descrição)</p>
+                 <h4>product_photo:</h4><p>Inserir a URL da imagem do produto.</p>                            
+                 <h4>price1:</h4><p>Inserir o preço atual/com desconto do produto.</p>                            
+                 <h4>price2:</h4><p>Inserir o preço original do produto.</p>  
+                 <h4>product_currency:</h4><p>Inserir o código de três dígitos da moeda correspondente ao valor. Ex.: BRL</p>
+             <h4>url_product:</h4><p>Deve ser populado com a variável que diz referência a página que a tag está implementada (categoria no caso da category), essa variável deve ser encodada (<a href="https://meyerweb.com/eric/tools/dencoder/">codificada</a>).</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    </div>
+
+  <hr>
+
+  <div class="row">
+        <div class="col-9">
+            <h4 class="header_cpa">Basket</h4>
+        <span class="badge badge-primary">Tag Genérica</span>
+      <div class="alert alert-secondary">
+         <code><span id="mastertag_basket">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=basket&id_partner={{anunciante.partner}}&product_id1=<span class="tag_generica">#ID_DOS_PRODUTOS#</span>&amount=<span class="tag_generica">#VALOR_TOTAL#</span>&url_product=<span class="tag_generica">#URL_DO_PRODUTO#</span>&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&order_date=<span class="tag_generica">#DATA_DO_PEDIDO#</span>&order_status=<span class="tag_generica">#STATUS_DO_PEDIDO#</span>&customer_id=<span class="tag_generica">#ID_DO_CLIENTE#</span>&customer_type=<span class="tag_generica">#TIPO_DE_CLIENTE#</span>"&gt;&lt;/script&gt;</span></code>
+      </div>
+    </div>
+    <div class="col-3">
+      <a href="#"><i id="btnCopyBasket" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+        <a href="#" data-toggle="modal" data-target="#modal_mastertag_basket_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+
+            <!-- Modal Pixel de conversão -->
+            <div class="modal fade" id="modal_mastertag_basket_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+              <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Mastertag Basket</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Deve ser inserida na página de basket/carrinho!</p>
+                    <hr>
+                    <h3>Parâmetros</h3>
+                    <hr> 
+                    <h4>product_id1:</h4><p> Inserir o ID do produto. Os ids devem ser separados por "," em casos de múltiplos id´s.</p>
+                    <h4>Amount:</h4><p>Inserir o valor total da compra. (** Utilizar ponto como separador decimal. Ex.: 1990.90).</p>
+                    <h4>transaction_id:</h4><p>Inserir o ID da transação.</p>
+                    <h4>order_date:</h4><p>Inserir a data da compra do produto.</p>
+                    <h4>order_status:</h4><p>Inserir "Completed" para confirmado ou "Pending" para pendente..</p>
+                    <h4>customer_id:</h4><p>Inserir o ID do cliente.</p>                          
+                    <h4>customer_type:</h4><p>Inserir "New" para novo cliente e "Old" para cliente antigo.</p>
+                    <h4>url_product:</h4><p>Deve ser populado com a variável que diz referência a página que a tag está implementada (categoria no caso da category), essa variável deve ser encodada (<a href="https://meyerweb.com/eric/tools/dencoder/">codificada</a>).</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    </div>
+
+  <hr>
+    <div class="row">
+        <div class="col-9">
+            <h4 class="header_cpa">Transaction</h4>
+            <span class="badge badge-primary">Tag Genérica</span>
+            <div class="alert alert-secondary">
+                <code><span id="mastertag_transaction">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=transaction&id_partner={{anunciante.partner}}&amount=<span class="tag_generica">#VALOR_TOTAL#</span>&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&customer_type=<span class="tag_generica">#TIPO_DE_CLIENTE#</span>&product_id1=<span class="tag_generica">#IDS_DOS_PRODUTOS#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>&order_date=<span class="tag_generica">#DATA_DO_PEDIDO#</span>&order_status=<span class="tag_generica">#STATUS_DO_PEDIDO#</span>&customer_id=<span class="tag_generica">#ID_DO_CLIENTE#</span>"&gt;&lt;/script&gt;</span></code>
+            </div>
+        </div>
+        <div class="col-3">
+            <a href="#"><i id="btnCopyTransaction" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+            <a href="#" data-toggle="modal" data-target="#modal_mastertag_transaction_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+
+            <!-- Modal Pixel de conversão -->
+            <div class="modal fade" id="modal_mastertag_transaction_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Mastertag Transaction</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Deve ser inserida na página de sucesso (Thank You)!</p>
+                            <p>A tag de Transaction é apenas para fins de retargeting, ela deve saltar JUNTO ao pixel de conversão, porém, somente o pixel fará a captação e a conversão dos valores.</p>
+                            <hr>
+                            <h3>Parâmetros</h3>
+                            <hr>                          
+                            <h4>Amount:</h4><p>Inserir o valor total da compra. (** Utilizar ponto como separador decimal. Ex.: 1990.90).</p>
+                            <h4>transaction_id:</h4><p>Inserir o ID da transação.</p>
+                            <h4>order_date:</h4><p>Inserir a data da compra do produto.</p>
+                            <h4>order_status:</h4><p>Inserir "Completed" para confirmado ou "Pending" para pendente..</p>
+                            <h4>customer_id:</h4><p>Inserir o ID do cliente.</p>                          
+                            <h4>customer_type:</h4><p>Inserir "New" para novo cliente e "Old" para cliente antigo.</p>
+                            <h4>url_product:</h4><p>Deve ser populado com a variável que diz referência a página que a tag está implementada (categoria no caso da category), essa variável deve ser encodada (<a href="https://meyerweb.com/eric/tools/dencoder/">codificada</a>).</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<hr>
+
+{% endblock %}

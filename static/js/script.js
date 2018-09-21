@@ -1,3 +1,5 @@
+//Sessão CPA
+//Pixel de conversão CPA
 var $bodyCpa = document.getElementsByTagName('body')[0];
 var $btnCopy = document.getElementById('btnCopy');
 var secretInfoCpa = document.getElementById('pixel_conversao_cpa').innerHTML;
@@ -21,236 +23,220 @@ $btnCopy.addEventListener('click', function(ev) {
   copyToClipboardCpa(secretInfoCpa);
 });
 
-var $bodyHome = document.getElementsByTagName('body')[0];
-var $btnCopyHome = document.getElementById('btnCopyHome');
-var secretInfoHome = document.getElementById('mastertag_homepage').innerHTML;
-var resHome = secretInfoHome.replace("&lt;","<")
-var res2Home = resHome.replace("&gt;",">")
-var res3Home = res2Home.replace("&lt;","<")
-var res4Home = res3Home.replace("&gt;",">")
-var res5Home = res4Home.replace('amp;','');
-var res6Home = res5Home.replace('amp;','');
-var res7Home = res6Home.replace('amp;','');
-var res8Home = res7Home.replace('<span class="tag_generica">','')
-var res9Home = res8Home.replace('</span>','');
-var copyToClipboardHome = function(secretInfoHome) {
-  var $tempInputHome = document.createElement('INPUT');
-  $bodyHome.appendChild($tempInputHome);
-  $tempInputHome.setAttribute('value', res9Home)
-  $tempInputHome.select();
+//Homepage CPA
+var $bodyHomeCpa = document.getElementsByTagName('body')[0];
+var $btnCopyHomeCpa = document.getElementById('btnCopyHomeCpa');
+var secretInfoHomeCpa = document.getElementById('mastertag_homepage_cpa').innerHTML;
+var resHomeCpa = secretInfoHomeCpa.replace("&lt;","<")
+var res2HomeCpa = resHomeCpa.replace("&gt;",">")
+var res3HomeCpa = res2HomeCpa.replace('<span class="tag_generica">','')
+var res4HomeCpa = res3HomeCpa.replace('</span>','')
+var res5HomeCpa = res4HomeCpa.replace('amp;','');
+var res6HomeCpa = res5HomeCpa.replace('amp;','');
+var res7HomeCpa = res6HomeCpa.replace('amp;','');
+var res8HomeCpa = res7HomeCpa.replace("&gt;",">")
+var res9HomeCpa = res8HomeCpa.replace("&lt;","<")
+
+
+var copyToClipboardHomeCpa = function(secretInfoHomeCpa) {
+  var $tempInputHomeCpa = document.createElement('INPUT');
+  $bodyHomeCpa.appendChild($tempInputHomeCpa);
+  $tempInputHomeCpa.setAttribute('value', res9HomeCpa)
+  $tempInputHomeCpa.select();
   document.execCommand('copy');
-  $bodyHome.removeChild($tempInputHome);
+  $bodyHomeCpa.removeChild($tempInputHomeCpa);
 }
-$btnCopyHome.addEventListener('click', function(ev) {
-  copyToClipboardHome(secretInfoHome);
+$btnCopyHomeCpa.addEventListener('click', function(ev) {
+  copyToClipboardHomeCpa(secretInfoHomeCpa);
 });
 
-var $bodyCategory = document.getElementsByTagName('body')[0];
-var $btnCopyCategory = document.getElementById('btnCopyCategory');
-var secretInfoCategory = document.getElementById('mastertag_category').innerHTML;
-var resCategory = secretInfoCategory.replace("&lt;","<")
-var res2Category = resCategory.replace("&gt;",">")
-var res3Category = res2Category.replace("&lt;","<")
-var res4Category = res3Category.replace("&gt;",">")
-var res5Category = res4Category.replace('amp;','')
-var res6Category = res5Category.replace('amp;','')
-var res7Category = res6Category.replace('amp;','')
-var res8Category = res7Category.replace('<span class="tag_generica">','')
-var res9Category = res8Category.replace('</span>','')
-var res10Category = res9Category.replace('amp;','')
-var res11Category = res10Category.replace('<span class="tag_generica">','')
-var res12Category = res11Category.replace('</span>','')
+//Category CPA
+var $bodyCategoryCpa = document.getElementsByTagName('body')[0];
+var $btnCopyCategoryCpa = document.getElementById('btnCopyCategoryCpa');
+var secretInfoCategoryCpa = document.getElementById('mastertag_category_cpa').innerHTML;
+var resCategoryCpa = secretInfoCategoryCpa.replace("&lt;","<")
+var res2CategoryCpa = resCategoryCpa.replace("&gt;",">")
+var res3CategoryCpa = res2CategoryCpa.replace('<span class="tag_generica">','')
+var res4CategoryCpa = res3CategoryCpa.replace('</span>','')
+var res5CategoryCpa = res4CategoryCpa.replace('<span class="tag_generica">','')
+var res6CategoryCpa = res5CategoryCpa.replace('</span>','')
+var res7CategoryCpa = res6CategoryCpa.replace('amp;','');
+var res8CategoryCpa = res7CategoryCpa.replace('amp;','');
+var res9CategoryCpa = res8CategoryCpa.replace('amp;','');
+var res10CategoryCpa = res9CategoryCpa.replace('amp;','');
+var res11CategoryCpa = res10CategoryCpa.replace('amp;','');
+var res12CategoryCpa = res11CategoryCpa.replace('amp;','');
+var res13CategoryCpa = res12CategoryCpa.replace('amp;','');
+var res14CategoryCpa = res13CategoryCpa.replace("&lt;","<")
+var res15CategoryCpa = res14CategoryCpa.replace("&gt;",">")
 
-var copyToClipboardCategory = function(secretInfoCategory) {
-  var $tempInputCategory = document.createElement('INPUT');
-  $bodyCategory.appendChild($tempInputCategory);
-  $tempInputCategory.setAttribute('value', res12Category)
-  $tempInputCategory.select();
+
+var copyToClipboardCategoryCpa = function(secretInfoCategoryCpa) {
+  var $tempInputCategoryCpa = document.createElement('INPUT');
+  $bodyCategoryCpa.appendChild($tempInputCategoryCpa);
+  $tempInputCategoryCpa.setAttribute('value', res15CategoryCpa)
+  $tempInputCategoryCpa.select();
   document.execCommand('copy');
-  $bodyCategory.removeChild($tempInputCategory);
+  $bodyCategoryCpa.removeChild($tempInputCategoryCpa);
 }
-$btnCopyCategory.addEventListener('click', function(ev) {
-  copyToClipboardCategory(secretInfoCategory);
+$btnCopyCategoryCpa.addEventListener('click', function(ev) {
+  copyToClipboardCategoryCpa(secretInfoCategoryCpa);
 });
 
-var $bodyProduct = document.getElementsByTagName('body')[0];
-var $btnCopyProduct = document.getElementById('btnCopyProduct');
-var secretInfoProduct = document.getElementById('mastertag_product').innerHTML;
-var resProduct = secretInfoProduct.replace("&lt;","<")
-var res2Product = resProduct.replace("&gt;",">")
-var res3Product = res2Product.replace("&lt;","<")
-var res4Product = res3Product.replace("&gt;",">")
-var res5Product = res4Product.replace('amp;','')
-var res6Product = res5Product.replace('amp;','')
-var res7Product = res6Product.replace('amp;','')
-var res8Product = res7Product.replace('<span class="tag_generica">','')
-var res9Product = res8Product.replace('</span>','')
-var res10Product = res9Product.replace('amp;','')
-var res11Product = res10Product.replace('<span class="tag_generica">','')
-var res12Product = res11Product.replace('</span>','')
-var res13Product = res12Product.replace('amp;','')
-var res14Product = res13Product.replace('<span class="tag_generica">','')
-var res15Product = res14Product.replace('</span>','')
-var res16Product = res15Product.replace('amp;','')
-var res17Product = res16Product.replace('<span class="tag_generica">','')
-var res18Product = res17Product.replace('</span>','')
-var res19Product = res18Product.replace('amp;','')
-var res20Product = res19Product.replace('<span class="tag_generica">','')
-var res21Product = res20Product.replace('</span>','')
-var res22Product = res21Product.replace('amp;','')
-var res23Product = res22Product.replace('<span class="tag_generica">','')
-var res24Product = res23Product.replace('</span>','')
-var res25Product = res24Product.replace('amp;','')
-var res26Product = res25Product.replace('<span class="tag_generica">','')
-var res27Product = res26Product.replace('</span>','')
-var res28Product = res27Product.replace('amp;','')
-var res29Product = res28Product.replace('<span class="tag_generica">','')
-var res30Product = res29Product.replace('</span>','')
-var res31Product = res30Product.replace('amp;','')
-var res32Product = res31Product.replace('<span class="tag_generica">','')
-var res33Product = res32Product.replace('</span>','')
-var res34Product = res33Product.replace('amp;','')
-var res35Product = res34Product.replace('<span class="tag_generica">','')
-var res36Product = res35Product.replace('</span>','')
-var res37Product = res36Product.replace('amp;','')
-var res38Product = res37Product.replace('<span class="tag_generica">','')
-var res39Product = res38Product.replace('</span>','')
-var res40Product = res39Product.replace('amp;','')
+//Product CPA
+var $bodyProductCpa = document.getElementsByTagName('body')[0];
+var $btnCopyProductCpa = document.getElementById('btnCopyProductCpa');
+var secretInfoProductCpa = document.getElementById('mastertag_product_cpa').innerHTML;
+var resProductCpa = secretInfoProductCpa.replace("&lt;","<")
+var res2ProductCpa = resProductCpa.replace("&gt;",">")
+var res3ProductCpa = res2ProductCpa.replace('amp;','');
+var res4ProductCpa = res3ProductCpa.replace('<span class="tag_generica">','')
+var res5ProductCpa = res4ProductCpa.replace('</span>','')
+var res6ProductCpa = res5ProductCpa.replace('<span class="tag_generica">','')
+var res7ProductCpa = res6ProductCpa.replace('</span>','')
+var res8ProductCpa = res7ProductCpa.replace('amp;','');
+var res9ProductCpa = res8ProductCpa.replace('amp;','');
+var res10ProductCpa = res9ProductCpa.replace('amp;','');
+var res11ProductCpa = res10ProductCpa.replace('amp;','');
+var res12ProductCpa = res11ProductCpa.replace('amp;','');
+var res13ProductCpa = res12ProductCpa.replace("&lt;","<")
+var res14ProductCpa = res13ProductCpa.replace("&gt;",">")
+var res15ProductCpa = res14ProductCpa.replace('<span class="tag_generica">','')
+var res16ProductCpa = res15ProductCpa.replace('</span>','')
+var res17ProductCpa = res16ProductCpa.replace('amp;','');
+var res18ProductCpa = res17ProductCpa.replace('<span class="tag_generica">','')
+var res19ProductCpa = res18ProductCpa.replace('</span>','')
+var res20ProductCpa = res19ProductCpa.replace('amp;','');
+var res21ProductCpa = res20ProductCpa.replace('<span class="tag_generica">','')
+var res22ProductCpa = res21ProductCpa.replace('</span>','')
+var res23ProductCpa = res22ProductCpa.replace('amp;','');
+var res24ProductCpa = res23ProductCpa.replace('<span class="tag_generica">','')
+var res25ProductCpa = res24ProductCpa.replace('</span>','')
+var res26ProductCpa = res25ProductCpa.replace('amp;','');
+var res27ProductCpa = res26ProductCpa.replace('<span class="tag_generica">','')
+var res28ProductCpa = res27ProductCpa.replace('</span>','')
+var res29ProductCpa = res28ProductCpa.replace('amp;','');
+var res30ProductCpa = res29ProductCpa.replace('<span class="tag_generica">','')
+var res31ProductCpa = res30ProductCpa.replace('</span>','')
+var res32ProductCpa = res31ProductCpa.replace('amp;','');
+var res33ProductCpa = res32ProductCpa.replace('<span class="tag_generica">','')
+var res34ProductCpa = res33ProductCpa.replace('</span>','')
+var res35ProductCpa = res34ProductCpa.replace('amp;','');
+var res36ProductCpa = res35ProductCpa.replace('<span class="tag_generica">','')
+var res37ProductCpa = res36ProductCpa.replace('</span>','')
+var res38ProductCpa = res37ProductCpa.replace('<span class="tag_generica">','')
+var res39ProductCpa = res38ProductCpa.replace('</span>','')
+var res40ProductCpa = res39ProductCpa.replace('amp;','');
 
-var copyToClipboardProduct = function(secretInfoProduct) {
-  var $tempInputProduct = document.createElement('INPUT');
-  $bodyProduct.appendChild($tempInputProduct);
-  $tempInputProduct.setAttribute('value', res40Product)
-  $tempInputProduct.select();
+
+
+var copyToClipboardProductCpa = function(secretInfoProductCpa) {
+  var $tempInputProductCpa = document.createElement('INPUT');
+  $bodyProductCpa.appendChild($tempInputProductCpa);
+  $tempInputProductCpa.setAttribute('value', res40ProductCpa)
+  $tempInputProductCpa.select();
   document.execCommand('copy');
-  $bodyProduct.removeChild($tempInputProduct);
+  $bodyProductCpa.removeChild($tempInputProductCpa);
 }
-$btnCopyProduct.addEventListener('click', function(ev) {
-  copyToClipboardProduct(secretInfoProduct);
+$btnCopyProductCpa.addEventListener('click', function(ev) {
+  copyToClipboardProductCpa(secretInfoProductCpa);
 });
 
-var $bodyBasket = document.getElementsByTagName('body')[0];
-var $btnCopyBasket = document.getElementById('btnCopyBasket');
-var secretInfoBasket = document.getElementById('mastertag_basket').innerHTML;
-var resBasket = secretInfoBasket.replace("&lt;","<")
-var res2Basket = resBasket.replace("&gt;",">")
-var res3Basket = res2Basket.replace("&lt;","<")
-var res4Basket = res3Basket.replace("&gt;",">")
-var res5Basket = res4Basket.replace('amp;','')
-var res6Basket = res5Basket.replace('amp;','')
-var res7Basket = res6Basket.replace('amp;','')
-var res8Basket = res7Basket.replace('<span class="tag_generica">','')
-var res9Basket = res8Basket.replace('</span>','')
-var res10Basket = res9Basket.replace('amp;','')
-var res11Basket = res10Basket.replace('<span class="tag_generica">','')
-var res12Basket = res11Basket.replace('</span>','')
-var res13Basket = res12Basket.replace('amp;','')
-var res14Basket = res13Basket.replace('<span class="tag_generica">','')
-var res15Basket = res14Basket.replace('</span>','')
-var res16Basket = res15Basket.replace('amp;','')
-var res17Basket = res16Basket.replace('<span class="tag_generica">','')
-var res18Basket = res17Basket.replace('</span>','')
-var res19Basket = res18Basket.replace('amp;','')
-var res20Basket = res19Basket.replace('<span class="tag_generica">','')
-var res21Basket = res20Basket.replace('</span>','')
-var res22Basket = res21Basket.replace('amp;','')
-var res23Basket = res22Basket.replace('<span class="tag_generica">','')
-var res24Basket = res23Basket.replace('</span>','')
-var res25Basket = res24Basket.replace('amp;','')
-var res26Basket = res25Basket.replace('<span class="tag_generica">','')
-var res27Basket = res26Basket.replace('</span>','')
-var res28Basket = res27Basket.replace('amp;','')
-var res29Basket = res28Basket.replace('<span class="tag_generica">','')
-var res30Basket = res29Basket.replace('</span>','')
+//Basket CPA
+var $bodyBasketCpa = document.getElementsByTagName('body')[0];
+var $btnCopyBasketCpa = document.getElementById('btnCopyBasketCpa');
+var secretInfoBasketCpa = document.getElementById('mastertag_basket_cpa').innerHTML;
+var resBasketCpa = secretInfoBasketCpa.replace("&lt;","<")
+var res2BasketCpa = resBasketCpa.replace("&gt;",">")
+var res3BasketCpa = res2BasketCpa.replace('amp;','');
+var res4BasketCpa = res3BasketCpa.replace('<span class="tag_generica">','')
+var res5BasketCpa = res4BasketCpa.replace('</span>','')
+var res6BasketCpa = res5BasketCpa.replace('<span class="tag_generica">','')
+var res7BasketCpa = res6BasketCpa.replace('</span>','')
+var res8BasketCpa = res7BasketCpa.replace('amp;','');
+var res9BasketCpa = res8BasketCpa.replace('amp;','');
+var res10BasketCpa = res9BasketCpa.replace('amp;','');
+var res11BasketCpa = res10BasketCpa.replace('amp;','');
+var res12BasketCpa = res11BasketCpa.replace('amp;','');
+var res13BasketCpa = res12BasketCpa.replace("&lt;","<")
+var res14BasketCpa = res13BasketCpa.replace("&gt;",">")
+var res15BasketCpa = res14BasketCpa.replace('<span class="tag_generica">','')
+var res16BasketCpa = res15BasketCpa.replace('</span>','')
+var res17BasketCpa = res16BasketCpa.replace('amp;','');
+var res18BasketCpa = res17BasketCpa.replace('<span class="tag_generica">','')
+var res19BasketCpa = res18BasketCpa.replace('</span>','')
+var res20BasketCpa = res19BasketCpa.replace('amp;','');
+var res21BasketCpa = res20BasketCpa.replace('<span class="tag_generica">','')
+var res22BasketCpa = res21BasketCpa.replace('</span>','')
+var res23BasketCpa = res22BasketCpa.replace('amp;','');
+var res24BasketCpa = res23BasketCpa.replace('<span class="tag_generica">','')
+var res25BasketCpa = res24BasketCpa.replace('</span>','')
+var res26BasketCpa = res25BasketCpa.replace('amp;','');
+var res27BasketCpa = res26BasketCpa.replace('<span class="tag_generica">','')
+var res28BasketCpa = res27BasketCpa.replace('</span>','')
+var res29BasketCpa = res28BasketCpa.replace('amp;','');
+var res30BasketCpa = res29BasketCpa.replace('<span class="tag_generica">','')
+var res31BasketCpa = res30BasketCpa.replace('</span>','')
 
-var copyToClipboardBasket = function(secretInfoBasket) {
-  var $tempInputBasket = document.createElement('INPUT');
-  $bodyBasket.appendChild($tempInputBasket);
-  $tempInputBasket.setAttribute('value', res30Basket)
-  $tempInputBasket.select();
+var copyToClipboardBasketCpa = function(secretInfoBasketCpa) {
+  var $tempInputBasketCpa = document.createElement('INPUT');
+  $bodyBasketCpa.appendChild($tempInputBasketCpa);
+  $tempInputBasketCpa.setAttribute('value', res31BasketCpa)
+  $tempInputBasketCpa.select();
   document.execCommand('copy');
-  $bodyBasket.removeChild($tempInputBasket);
+  $bodyBasketCpa.removeChild($tempInputBasketCpa);
 }
-$btnCopyBasket.addEventListener('click', function(ev) {
-  copyToClipboardBasket(secretInfoBasket);
+$btnCopyBasketCpa.addEventListener('click', function(ev) {
+  copyToClipboardBasketCpa(secretInfoBasketCpa);
 });
 
-var $bodyTransaction = document.getElementsByTagName('body')[0];
-var $btnCopyTransaction = document.getElementById('btnCopyTransaction');
-var secretInfoTransaction = document.getElementById('mastertag_transaction').innerHTML;
-var resTransaction = secretInfoTransaction.replace("&lt;","<")
-var res2Transaction = resTransaction.replace("&gt;",">")
-var res3Transaction = res2Transaction.replace("&lt;","<")
-var res4Transaction = res3Transaction.replace("&gt;",">")
-var res5Transaction = res4Transaction.replace('amp;','')
-var res6Transaction = res5Transaction.replace('amp;','')
-var res7Transaction = res6Transaction.replace('amp;','')
-var res8Transaction = res7Transaction.replace('<span class="tag_generica">','')
-var res9Transaction = res8Transaction.replace('</span>','')
-var res10Transaction = res9Transaction.replace('amp;','')
-var res11Transaction = res10Transaction.replace('<span class="tag_generica">','')
-var res12Transaction = res11Transaction.replace('</span>','')
-var res13Transaction = res12Transaction.replace('amp;','')
-var res14Transaction = res13Transaction.replace('<span class="tag_generica">','')
-var res15Transaction = res14Transaction.replace('</span>','')
-var res16Transaction = res15Transaction.replace('amp;','')
-var res17Transaction = res16Transaction.replace('<span class="tag_generica">','')
-var res18Transaction = res17Transaction.replace('</span>','')
-var res19Transaction = res18Transaction.replace('amp;','')
-var res20Transaction = res19Transaction.replace('<span class="tag_generica">','')
-var res21Transaction = res20Transaction.replace('</span>','')
-var res22Transaction = res21Transaction.replace('amp;','')
-var res23Transaction = res22Transaction.replace('<span class="tag_generica">','')
-var res24Transaction = res23Transaction.replace('</span>','')
-var res25Transaction = res24Transaction.replace('amp;','')
-var res26Transaction = res25Transaction.replace('<span class="tag_generica">','')
-var res27Transaction = res26Transaction.replace('</span>','')
-var res28Transaction = res27Transaction.replace('amp;','')
-var res29Transaction = res28Transaction.replace('<span class="tag_generica">','')
-var res30Transaction = res29Transaction.replace('</span>','')
-var res31Transaction = res30Transaction.replace('amp;','')
+//Transaction CPA
+var $bodyTransactionCpa = document.getElementsByTagName('body')[0];
+var $btnCopyTransactionCpa = document.getElementById('btnCopyTransactionCpa');
+var secretInfoTransactionCpa = document.getElementById('mastertag_transaction_cpa').innerHTML;
+var resTransactionCpa = secretInfoTransactionCpa.replace("&lt;","<")
+var res2TransactionCpa = resTransactionCpa.replace("&gt;",">")
+var res3TransactionCpa = res2TransactionCpa.replace('amp;','');
+var res4TransactionCpa = res3TransactionCpa.replace('<span class="tag_generica">','')
+var res5TransactionCpa = res4TransactionCpa.replace('</span>','')
+var res6TransactionCpa = res5TransactionCpa.replace('<span class="tag_generica">','')
+var res7TransactionCpa = res6TransactionCpa.replace('</span>','')
+var res8TransactionCpa = res7TransactionCpa.replace('amp;','');
+var res9TransactionCpa = res8TransactionCpa.replace('amp;','');
+var res10TransactionCpa = res9TransactionCpa.replace('amp;','');
+var res11TransactionCpa = res10TransactionCpa.replace('amp;','');
+var res12TransactionCpa = res11TransactionCpa.replace('amp;','');
+var res13TransactionCpa = res12TransactionCpa.replace("&lt;","<")
+var res14TransactionCpa = res13TransactionCpa.replace("&gt;",">")
+var res15TransactionCpa = res14TransactionCpa.replace('<span class="tag_generica">','')
+var res16TransactionCpa = res15TransactionCpa.replace('</span>','')
+var res17TransactionCpa = res16TransactionCpa.replace('amp;','');
+var res18TransactionCpa = res17TransactionCpa.replace('<span class="tag_generica">','')
+var res19TransactionCpa = res18TransactionCpa.replace('</span>','')
+var res20TransactionCpa = res19TransactionCpa.replace('amp;','');
+var res21TransactionCpa = res20TransactionCpa.replace('<span class="tag_generica">','')
+var res22TransactionCpa = res21TransactionCpa.replace('</span>','')
+var res23TransactionCpa = res22TransactionCpa.replace('amp;','');
+var res24TransactionCpa = res23TransactionCpa.replace('<span class="tag_generica">','')
+var res25TransactionCpa = res24TransactionCpa.replace('</span>','')
+var res26TransactionCpa = res25TransactionCpa.replace('amp;','');
+var res27TransactionCpa = res26TransactionCpa.replace('<span class="tag_generica">','')
+var res28TransactionCpa = res27TransactionCpa.replace('</span>','')
+var res29TransactionCpa = res28TransactionCpa.replace('amp;','');
+var res30TransactionCpa = res29TransactionCpa.replace('<span class="tag_generica">','')
+var res31TransactionCpa = res30TransactionCpa.replace('</span>','')
 
-var copyToClipboardTransaction = function(secretInfoTransaction) {
-  var $tempInputTransaction = document.createElement('INPUT');
-  $bodyTransaction.appendChild($tempInputTransaction);
-  $tempInputTransaction.setAttribute('value', res31Transaction)
-  $tempInputTransaction.select();
+var copyToClipboardTransactionCpa = function(secretInfoTransactionCpa) {
+  var $tempInputTransactionCpa = document.createElement('INPUT');
+  $bodyTransactionCpa.appendChild($tempInputTransactionCpa);
+  $tempInputTransactionCpa.setAttribute('value', res31TransactionCpa)
+  $tempInputTransactionCpa.select();
   document.execCommand('copy');
-  $bodyTransaction.removeChild($tempInputTransaction);
+  $bodyTransactionCpa.removeChild($tempInputTransactionCpa);
 }
-$btnCopyTransaction.addEventListener('click', function(ev) {
-  copyToClipboardTransaction(secretInfoTransaction);
+$btnCopyTransactionCpa.addEventListener('click', function(ev) {
+  copyToClipboardTransactionCpa(secretInfoTransactionCpa);
 });
-
-function CopyToClipboard(containerid) {
-if (document.selection) { 
-    var range = document.body.createTextRange();
-    range.moveToElementText(document.getElementById("mastertag_basket_cpl"));
-    range.select().createTextRange();
-    document.execCommand("copy"); 
-
-} else if (window.getSelection) {
-    var range = document.createRange();
-     range.selectNode(document.getElementById("mastertag_basket_cpl"));
-     window.getSelection().addRange(range);
-     document.execCommand("copy");
-     alert("Tag copiada!") 
-}}
-
-function CopyToClipboard(containerid) {
-if (document.selection) { 
-    var range = document.body.createTextRange();
-    range.moveToElementText(document.getElementById("mastertag_transaction_cpl"));
-    range.select().createTextRange();
-    document.execCommand("copy"); 
-
-} else if (window.getSelection) {
-    var range = document.createRange();
-     range.selectNode(document.getElementById("mastertag_transaction_cpl"));
-     window.getSelection().addRange(range);
-     document.execCommand("copy");
-     alert("<div class='alert alert-success'><strong>Success!</strong> You should <a href='#' class='alert-link'>read this message</a>.</div>") 
-}}
 
 // Script snackbar
 
