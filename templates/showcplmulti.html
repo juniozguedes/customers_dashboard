@@ -24,10 +24,11 @@
     {% endfor %}  
 
     </div>
+      <div class="col-3"><a href="#" data-toggle="modal" data-target="#modal_pixel_conversao_cpl"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a></div>
     </div>
 
       <!-- Modal Pixel de conversão -->
-      <div class="modal fade" id="modal_pixel_conversao_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modal_pixel_conversao_cpl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -56,15 +57,15 @@
       <h4 class="header_cpa">Homepage</h4>
       <span class="badge badge-primary">Tag Genérica</span>
       <div class="alert alert-secondary">
-        <code><span id="mastertag_homepage">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=homepage&id_partner={{anunciante.partner}}&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+        <code><span id="mastertag_homepage_cpl">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=homepage&id_partner={{anunciante.partner}}&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
       </div>
     </div>
     <div class="col-3">
-      <a href="#"><i id="btnCopyHome" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
-      <a href="#" data-toggle="modal" data-target="#modal_mastertag_homepage"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#"><i id="btnCopyHomeCpl" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#" data-toggle="modal" data-target="#modal_mastertag_homepage_cpl"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
 
       <!-- Modal Pixel de conversão -->
-      <div class="modal fade" id="modal_mastertag_homepage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modal_mastertag_homepage_cpl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -182,6 +183,9 @@
 </div>
 
         <div id="sucesso">Tag copiada!</div>
+
+  <script src="{{url_for('static', filename='js/scriptcplmulti.js')}}"></script>
+
 		<!--<h1>See some info about {{anunciante.partner}}</h1>
 		{{anunciante.pid}} {{anunciante.description}} {{anunciante.role}}
 		<a href="{{url_for('edit', pid=anunciante.pid)}}">Edit Anunciante</a> -->

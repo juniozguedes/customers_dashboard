@@ -10,7 +10,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-9">
             <h4 class="header_cpa">Pixel de Conversão</h4>
             <span class="badge badge-info">Tag de conversão Multitarifa</span>
 
@@ -22,6 +22,7 @@
             </div>
     {% endfor %}
         </div>
+        <div class="col-3"><a href="#" data-toggle="modal" data-target="#modal_pixel_conversao_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a></div>
     </div>
 
     <!-- Modal Pixel de conversão -->
@@ -41,6 +42,9 @@
               <hr>                 
               <h4>order_id:</h4><p>Deve ser preenchido com um ID ÚNICO, que não se repita, no final da validação, após a implementação, esse mesmo order_id deve ser comprovado via print (Do seu Google Analytics ou do seu sistema próprio de validação</p>
               <h4>order_price:</h4><p>Deve ser populado com o preço do produto, sem vírgulas ou pontos separadores decimais, exemplo: Uma compra de R$ 100,50 ficaria order_price:10050 tudo junto.</p>
+              <h4>remid:</h4><p>ID multi-tarifa.</p>
+              <h4>tag-mulitarifa:</h4><p>Auto descritivo.</p>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -56,11 +60,11 @@
             <h4 class="header_cpa">Homepage</h4>
             <span class="badge badge-primary">Tag Genérica</span>
             <div class="alert alert-secondary">
-                <code><span id="mastertag_homepage">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=homepage&id_partner={{anunciante.partner}}&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+                <code><span id="mastertag_homepage_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=homepage&id_partner={{anunciante.partner}}&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
             </div>
         </div>
         <div class="col-3">
-            <a href="#"><i id="btnCopyHome" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+            <a href="#"><i id="btnCopyHomeCpa" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
             <a href="#" data-toggle="modal" data-target="#modal_mastertag_homepage_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
 
             <!-- Modal Pixel de conversão -->
@@ -96,11 +100,11 @@
             <h4 class="header_cpa">Category</h4>
         <span class="badge badge-primary">Tag Genérica</span>
       <div class="alert alert-secondary">
-         <code><span id="mastertag_category">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=category&id_partner={{anunciante.partner}}&id_category=<span class="tag_generica">#ID_DA_CATEGORIA#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+         <code><span id="mastertag_category_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=category&id_partner={{anunciante.partner}}&id_category=<span class="tag_generica">#ID_DA_CATEGORIA#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
       </div>
     </div>
     <div class="col-3">
-      <a href="#"><i id="btnCopyCategory" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#"><i id="btnCopyCategoryCpa" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
         <a href="#" data-toggle="modal" data-target="#modal_mastertag_category_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
 
             <!-- Modal Pixel de conversão -->
@@ -137,11 +141,11 @@
             <h4 class="header_cpa">Product</h4>
         <span class="badge badge-primary">Tag Genérica</span>
       <div class="alert alert-secondary">
-         <code><span id="mastertag_product">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=product&id_partner={{anunciante.partner}}&product_id1=<span class="tag_generica">#ID_DO_PRODUTO#</span>&id_category=<span class="tag_generica">#ID_DA_CATEGORIA#</span>&stock=<span class="tag_generica">#ESTOQUE#</span>&product_sku=<span class="tag_generica">#SKU_DO_PRODUTO#</span>&product_name=<span class="tag_generica">#NOME_DO_PRODUTO#</span>&product_desc=<span class="tag_generica">#DESCRICAO_DO_PRODUTO#</span>&product_photo=<span class="tag_generica">#IMAGEM_DO_PRODUTO#</span>&price1=<span class="tag_generica">#PRECO_ATUAL#</span>&price2=<span class="tag_generica">#PRECO_ORIGINAL#</span>&product_currency=<span class="tag_generica">#MOEDA_DA_TRANSACAO#</span>&url_product=#<span class="tag_generica">URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+         <code><span id="mastertag_product_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=product&id_partner={{anunciante.partner}}&product_id1=<span class="tag_generica">#ID_DO_PRODUTO#</span>&id_category=<span class="tag_generica">#ID_DA_CATEGORIA#</span>&stock=<span class="tag_generica">#ESTOQUE#</span>&product_sku=<span class="tag_generica">#SKU_DO_PRODUTO#</span>&product_name=<span class="tag_generica">#NOME_DO_PRODUTO#</span>&product_desc=<span class="tag_generica">#DESCRICAO_DO_PRODUTO#</span>&product_photo=<span class="tag_generica">#IMAGEM_DO_PRODUTO#</span>&price1=<span class="tag_generica">#PRECO_ATUAL#</span>&price2=<span class="tag_generica">#PRECO_ORIGINAL#</span>&product_currency=<span class="tag_generica">#MOEDA_DA_TRANSACAO#</span>&url_product=#<span class="tag_generica">URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
       </div>
     </div>
     <div class="col-3">
-        <a href="#"><i id="btnCopyProduct" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+        <a href="#"><i id="btnCopyProductCpa" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
         <a href="#" data-toggle="modal" data-target="#modal_mastertag_product_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
 
             <!-- Modal Pixel de conversão -->
@@ -187,11 +191,11 @@
             <h4 class="header_cpa">Basket</h4>
         <span class="badge badge-primary">Tag Genérica</span>
       <div class="alert alert-secondary">
-         <code><span id="mastertag_basket">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=basket&id_partner={{anunciante.partner}}&product_id1=<span class="tag_generica">#ID_DOS_PRODUTOS#</span>&amount=<span class="tag_generica">#VALOR_TOTAL#</span>&url_product=<span class="tag_generica">#URL_DO_PRODUTO#</span>&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&order_date=<span class="tag_generica">#DATA_DO_PEDIDO#</span>&order_status=<span class="tag_generica">#STATUS_DO_PEDIDO#</span>&customer_id=<span class="tag_generica">#ID_DO_CLIENTE#</span>&customer_type=<span class="tag_generica">#TIPO_DE_CLIENTE#</span>"&gt;&lt;/script&gt;</span></code>
+         <code><span id="mastertag_basket_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=basket&id_partner={{anunciante.partner}}&product_id1=<span class="tag_generica">#ID_DOS_PRODUTOS#</span>&amount=<span class="tag_generica">#VALOR_TOTAL#</span>&url_product=<span class="tag_generica">#URL_DO_PRODUTO#</span>&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&order_date=<span class="tag_generica">#DATA_DO_PEDIDO#</span>&order_status=<span class="tag_generica">#STATUS_DO_PEDIDO#</span>&customer_id=<span class="tag_generica">#ID_DO_CLIENTE#</span>&customer_type=<span class="tag_generica">#TIPO_DE_CLIENTE#</span>"&gt;&lt;/script&gt;</span></code>
       </div>
     </div>
     <div class="col-3">
-      <a href="#"><i id="btnCopyBasket" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#"><i id="btnCopyBasketCpa" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
         <a href="#" data-toggle="modal" data-target="#modal_mastertag_basket_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
 
             <!-- Modal Pixel de conversão -->
@@ -233,11 +237,11 @@
             <h4 class="header_cpa">Transaction</h4>
             <span class="badge badge-primary">Tag Genérica</span>
             <div class="alert alert-secondary">
-                <code><span id="mastertag_transaction">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=transaction&id_partner={{anunciante.partner}}&amount=<span class="tag_generica">#VALOR_TOTAL#</span>&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&customer_type=<span class="tag_generica">#TIPO_DE_CLIENTE#</span>&product_id1=<span class="tag_generica">#IDS_DOS_PRODUTOS#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>&order_date=<span class="tag_generica">#DATA_DO_PEDIDO#</span>&order_status=<span class="tag_generica">#STATUS_DO_PEDIDO#</span>&customer_id=<span class="tag_generica">#ID_DO_CLIENTE#</span>"&gt;&lt;/script&gt;</span></code>
+                <code><span id="mastertag_transaction_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=transaction&id_partner={{anunciante.partner}}&amount=<span class="tag_generica">#VALOR_TOTAL#</span>&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&customer_type=<span class="tag_generica">#TIPO_DE_CLIENTE#</span>&product_id1=<span class="tag_generica">#IDS_DOS_PRODUTOS#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>&order_date=<span class="tag_generica">#DATA_DO_PEDIDO#</span>&order_status=<span class="tag_generica">#STATUS_DO_PEDIDO#</span>&customer_id=<span class="tag_generica">#ID_DO_CLIENTE#</span>"&gt;&lt;/script&gt;</span></code>
             </div>
         </div>
         <div class="col-3">
-            <a href="#"><i id="btnCopyTransaction" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+            <a href="#"><i id="btnCopyTransactionCpa" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
             <a href="#" data-toggle="modal" data-target="#modal_mastertag_transaction_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
 
             <!-- Modal Pixel de conversão -->
@@ -273,5 +277,11 @@
         </div>
     </div>
 <hr>
+
+  <div id="sucesso">Tag copiada!</div>
+
+
+  <script src="{{url_for('static', filename='js/scriptcpamulti.js')}}"></script>
+
 
 {% endblock %}
