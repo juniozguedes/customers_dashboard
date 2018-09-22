@@ -14,15 +14,15 @@
       <h4 class="header_cpa">Pixel de Conversão</h4>
       <span class="badge badge-info">Tag de conversão</span>
       <div class="alert alert-secondary">
-        <code><span id="pixel_conversao_cpa">&lt;img src="https://secure.afilio.com.br/lead.php?pid={{anunciante.pid}}&order_id=<span class="pixel_conversao">#UNIQUE_ID#</span>" border="0" width="1" height="1"/&gt;</span></code>
+        <code><span id="pixel_conversao_cpl">&lt;img src="https://secure.afilio.com.br/lead.php?pid={{anunciante.pid}}&order_id=<span class="pixel_conversao">#UNIQUE_ID#</span>" border="0" width="1" height="1"/&gt;</span></code>
       </div>        
     </div>
     <div class="col-3">
-      <a href="#"><i id="btnCopy" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px; color:#26a1b6;"></i></a>
-      <a href="#" data-toggle="modal" data-target="#modal_pixel_conversao_cpa"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px; color:#26a1b6;"></i></a>
+      <a href="#"><i id="btnCopyCpl" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px; color:#26a1b6;"></i></a>
+      <a href="#" data-toggle="modal" data-target="#modal_pixel_conversao_cpl"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px; color:#26a1b6;"></i></a>
 
       <!-- Modal Pixel de conversão -->
-      <div class="modal fade" id="modal_pixel_conversao_cpa" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modal_pixel_conversao_cpl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -54,15 +54,15 @@
       <h4 class="header_cpa">Homepage</h4>
       <span class="badge badge-primary">Tag Genérica</span>
       <div class="alert alert-secondary">
-        <code><span id="mastertag_homepage">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=homepage&id_partner={{anunciante.partner}}&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+        <code><span id="mastertag_homepage_cpl">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=homepage&id_partner={{anunciante.partner}}&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
       </div>
     </div>
     <div class="col-3">
-      <a href="#"><i id="btnCopyHome" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
-      <a href="#" data-toggle="modal" data-target="#modal_mastertag_homepage"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#"><i id="btnCopyHomeCpl" onclick="popSucesso()" class="far fa-copy fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
+      <a href="#" data-toggle="modal" data-target="#modal_mastertag_homepage_cpl"><i class="far fa-question-circle fa-w-16 fa-2x" style="margin-top:50px;"></i></a>
 
       <!-- Modal Pixel de conversão -->
-      <div class="modal fade" id="modal_mastertag_homepage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modal_mastertag_homepage_cpl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -116,13 +116,6 @@
               <hr>
               <h3>Parâmetros</h3>
               <hr> 
-              <h4>product_id1:</h4><p> Inserir o ID do produto. Os ids devem ser separados por "," em casos de múltiplos id´s.</p>
-              <h4>Amount:</h4><p>Inserir o valor total da compra. (** Utilizar ponto como separador decimal. Ex.: 1990.90).</p>
-              <h4>transaction_id:</h4><p>Inserir o ID da transação.</p>
-              <h4>order_date:</h4><p>Inserir a data da compra do produto.</p>
-              <h4>order_status:</h4><p>Inserir "Completed" para confirmado ou "Pending" para pendente..</p>
-              <h4>customer_id:</h4><p>Inserir o ID do cliente.</p>                  
-              <h4>customer_type:</h4><p>Inserir "New" para novo cliente e "Old" para cliente antigo.</p>
               <h4>url_product:</h4><p>Deve ser populado com a variável que diz referência a página que a tag está implementada (categoria no caso da category), essa variável deve ser encodada (<a href="https://meyerweb.com/eric/tools/dencoder/">codificada</a>).</p>
             </div>
             <div class="modal-footer">
@@ -166,7 +159,6 @@
               <h3>Parâmetros</h3>
               <hr>                  
               <h4>transaction_id:</h4><p>Inserir o ID da transação.</p>
-              <h4>customer_id:</h4><p>Inserir o ID do cliente.</p>                  
               <h4>url_product:</h4><p>Deve ser populado com a variável que diz referência a página que a tag está implementada (categoria no caso da category), essa variável deve ser encodada (<a href="https://meyerweb.com/eric/tools/dencoder/">codificada</a>).</p>
             </div>
             <div class="modal-footer">
@@ -178,6 +170,9 @@
     </div>
   </div>
 </div>
+
+
+  <script src="{{url_for('static', filename='js/scriptcpl.js')}}"></script>
 
         <div id="sucesso">Tag copiada!</div>
 		<!--<h1>See some info about {{anunciante.partner}}</h1>
