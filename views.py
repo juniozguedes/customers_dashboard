@@ -121,12 +121,12 @@ def show(pid):
         db.session.commit()
         return redirect(url_for('afbase'))
 
-    return redirect(url_for('filter', partner = novo_anunciante.partner))
+    return redirect(url_for('filter', uniquekey = novo_anunciante.uniquekey))
 
-@app.route('/afbase/<partner>')
-def filter(partner):
+@app.route('/afbase/<uniquekey>')
+def filter(uniquekey):
     dict_test = {}
-    novo_anunciante = Anunciante.query.filter_by(partner=partner).first()
+    novo_anunciante = Anunciante.query.filter_by(uniquekey=uniquekey).first()
 
     for tag, remid in itertools.izip_longest(novo_anunciante.tags, novo_anunciante.remid):
         dict_test[tag] = remid

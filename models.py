@@ -3,6 +3,8 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from app import db
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import ARRAY
+import random
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from flask_migrate import Migrate
 
@@ -42,6 +44,7 @@ class Anunciante(db.Model):
     ficha = db.Column(db.Text)
     tags = db.Column(ARRAY(db.Text))
     remid = db.Column(ARRAY(db.Text))
+    uniquekey = db.Column(db.Text, unique=True)
     
     def __init__(self, pid, partner, description, role, multitarifa, extra, ficha):
         self.pid = pid
@@ -53,3 +56,4 @@ class Anunciante(db.Model):
         self.ficha = ficha
         self.tags = ['t_0','t_1']
         self.remid = ['t_0','t_1']
+        self.uniquekey = generate_password_hash(str(random.randrange(1000)))
