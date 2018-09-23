@@ -5,6 +5,7 @@ from models import Anunciante, User
 from urlparse import urlparse, urljoin
 from datetime import datetime
 import itertools
+import hashlib
 from app import db
 
 @app.route('/')
@@ -79,7 +80,7 @@ def new():
     elif current_user.role == 'admin':
     	return render_template('new.html')
 
-@app.route('/afbase/'+str(range(15))+'<int:pid>'+str(range(15)), methods=["GET", "PATCH", "DELETE"]) #We defined the page that will retrieve some info
+@app.route('/afbase/<int:pid>', methods=["GET", "PATCH", "DELETE"]) #We defined the page that will retrieve some info
 def show(pid):
     novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
     dict_test = {}
