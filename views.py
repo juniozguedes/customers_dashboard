@@ -6,6 +6,7 @@ from urlparse import urlparse, urljoin
 from datetime import datetime
 import itertools
 import hashlib
+from werkzeug.security import generate_password_hash, check_password_hash
 from app import db
 
 @app.route('/')
@@ -83,7 +84,6 @@ def new():
 @app.route('/afbase/<int:pid>', methods=["GET", "PATCH", "DELETE"]) #We defined the page that will retrieve some info
 def show(pid):
     novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
-    dict_test = {}
 
     if request.method == 'PATCH':
         novo_anunciante.pid = request.form['pid']
@@ -121,19 +121,26 @@ def show(pid):
         db.session.commit()
         return redirect(url_for('afbase'))
 
+    return redirect(url_for('filter', partner = novo_anunciante.partner))
+
+@app.route('/afbase/<partner>')
+def filter(partner):
+    dict_test = {}
+    novo_anunciante = Anunciante.query.filter_by(partner=partner).first()
+
     for tag, remid in itertools.izip_longest(novo_anunciante.tags, novo_anunciante.remid):
         dict_test[tag] = remid
 
     if novo_anunciante.role == 'CPA' and novo_anunciante.multitarifa == False:    
-    	return render_template('showcpa.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
+        return render_template('showcpa.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
     if novo_anunciante.role == 'CPL' and novo_anunciante.multitarifa == False:    
-    	return render_template('showcpl.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
+        return render_template('showcpl.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
     if novo_anunciante.role == 'CPA' and novo_anunciante.multitarifa == True:    
-    	return render_template('showcpamulti.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
+        return render_template('showcpamulti.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
     if novo_anunciante.role == 'CPL' and novo_anunciante.multitarifa == True:    
-    	return render_template('showcplmulti.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
+        return render_template('showcplmulti.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
     if novo_anunciante.role == 'CPC':    
-    	return render_template('showcpc.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
+        return render_template('showcpc.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
 
 @app.route('/afbase/<int:pid>/edit')
 @login_required
