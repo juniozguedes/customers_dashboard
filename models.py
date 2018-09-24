@@ -4,8 +4,7 @@ from app import db
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import ARRAY
 import random
-from werkzeug.security import generate_password_hash, check_password_hash
-
+import hashlib
 from flask_migrate import Migrate
 
 
@@ -45,6 +44,8 @@ class Anunciante(db.Model):
     tags = db.Column(ARRAY(db.Text))
     remid = db.Column(ARRAY(db.Text))
     uniquekey = db.Column(db.Text, unique=True)
+    mastertag_imagem = db.Column(db.Boolean, default=False)
+    log = db.Column(db.Text)
     
     def __init__(self, pid, partner, description, role, multitarifa, extra, ficha):
         self.pid = pid
@@ -55,5 +56,6 @@ class Anunciante(db.Model):
         self.extra = extra
         self.ficha = ficha
         self.tags = ['t_0','t_1']
-        self.remid = ['t_0','t_1']
-        self.uniquekey = generate_password_hash(str(random.randrange(1000)))
+        self.remid = ['r_0','r_1']
+        self.uniquekey = hashlib.sha256(str(random.randrange(1000))).hexdigest()
+        self.log = '0'

@@ -59,3 +59,31 @@ FOrmatação Ficha de cadastro
 
 VueJS
 
+====
+
+Same as above but for a non existing username gives None:
+
+>>> missing = User.query.filter_by(username='missing').first()
+>>> missing is None
+True
+
+Selecting a bunch of users by a more complex expression:
+
+>>> User.query.filter(User.email.endswith('@example.com')).all()
+[<User u'admin'>, <User u'guest'>]
+
+Ordering users by something:
+
+>>> User.query.order_by(User.username).all()
+[<User u'admin'>, <User u'guest'>, <User u'peter'>]
+
+Limiting users:
+
+>>> User.query.limit(1).all()
+[<User u'admin'>]
+
+Getting user by primary key:
+
+>>> User.query.get(1)
+<User u'admin'>
+

@@ -41,6 +41,10 @@ def logmein():
         if is_safe_url(next):
             return redirect(next)
 
+@app.route('/denied')
+def denied():
+	return render_template('erro.html')
+
 @app.route('/afbase/logout')
 @login_required
 def logout():
