@@ -164,7 +164,8 @@ def inner(pid):    #We passed some id for the user to specify which id will be s
 @app.route('/afbase/relatorios/liberadas')
 @login_required
 def liberadas():
-    return render_template('relatorios.html', anunciantes=Anunciante.query.filter_by(liberada=True)) 
+	liberadas = Anunciante.query.filter_by(liberada=True)
+    	return render_template('relatorios.html', anunciantes=liberadas.order_by(Anunciante.saida).all()) 
 
 @app.route('/home')
 @login_required
