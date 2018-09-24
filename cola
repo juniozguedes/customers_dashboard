@@ -81,9 +81,3 @@ Limiting users:
 
 >>> User.query.limit(1).all()
 [<User u'admin'>]
-
-Getting user by primary key:
-
->>> User.query.get(1)
-<User u'admin'>
-
