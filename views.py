@@ -165,7 +165,7 @@ def inner(pid):    #We passed some id for the user to specify which id will be s
 @login_required
 def liberadas():
 	liberadas = Anunciante.query.filter_by(liberada=True)
-    	return render_template('relatorios.html', anunciantes=liberadas.order_by(Anunciante.saida).all()) 
+    	return render_template('relatorios.html', anunciantes=liberadas.order_by(Anunciante.saida.desc()).all()) 
 
 @app.route('/home')
 @login_required
