@@ -3,7 +3,6 @@
 <div class="container-fluid zeropadding">
 	<img class="img-fluid" src="{{url_for('static',filename='img/afilio_mapa.png')}}">
 	<div class="centered" style="margin-top: 20px;">
-		<h1 class="containerr" style="color:white;">AFB</h1>		
 		<h1 class="containerr" style="color:white;">Login</h1>
 		<form action="{{url_for('logmein')}}" method="POST">
 			<p><input type="password" name="password"></p>
@@ -13,7 +12,7 @@
 		{% if messages %}
 		<ul class="flashes">
 			{% for message in messages %}
-			<li style="color:white;">{{message}}</li>
+			<li style="color:white; font-weight:bold;">{{message}}</li>
 			{% endfor %}
 		</ul>
 		{% endif %}
