@@ -78,6 +78,10 @@ body {
   height:100%;
 }
 
+#sombraredondeada{
+text-shadow: 11px 11px 11px black, 0 0 5px black;
+}
+
 /* The sucesso - position it at the bottom and in the middle of the screen */
 #sucesso {
     visibility: hidden; /* Hidden by default. Visible on click */
