@@ -31,7 +31,7 @@ def logmein():
     user = User.query.filter_by(password=password).first()
 
     if not user:
-        return '<h1>User not found </h1>'
+	    return redirect(url_for('afbase'))
 
     login_user(user, remember=True)
 

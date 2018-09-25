@@ -11,7 +11,7 @@ from flask_migrate import Migrate
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login' #if unauthorized, redirects to login
-login_manager.login_message = 'You need to login!'
+login_manager.login_message = 'Efetue o login!'
 
 migrate = Migrate(app, db)
 

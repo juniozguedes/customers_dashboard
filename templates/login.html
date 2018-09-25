@@ -1,26 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'public_base.html' %}
 {% block content %}
-<div class="container" style="margin-top: 20px;">
-	<h1>login</h1>
-	<form action="{{url_for('logmein')}}" method="POST">
-		<p><input type="password" name="password"></p>
-		<input type="submit">
-	</form>
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-	<ul class="flashes">
-	{% for message in messages %}
-		<li>{{message}}</li>
-	{% endfor %}
-	</ul>
-{% endif %}
-{% endwith %}
-<div class="col-12" style="margin-top: 20px;">
-	<div class="container-fluid">
-	  <img src="{{url_for('static',filename='img/afilio_mapa.png')}}" style="width:80%; height:400px;margin-left: 9%;">
+<div class="container-fluid zeropadding">
+	<img class="img-fluid" src="{{url_for('static',filename='img/afilio_mapa.png')}}">
+	<div class="centered" style="margin-top: 20px;">
+		<h1 class="containerr" style="color:white;">AFB</h1>		
+		<h1 class="containerr" style="color:white;">Login</h1>
+		<form action="{{url_for('logmein')}}" method="POST">
+			<p><input type="password" name="password"></p>
+			<input class="container" type="submit">
+		</form>
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul class="flashes">
+			{% for message in messages %}
+			<li style="color:white;">{{message}}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
 	</div>
-</div>
-
-
 </div>
 {% endblock %}
