@@ -3,7 +3,7 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-top: 1rem;
+  padding-top: 0rem;
   padding-bottom: 2rem;
   color: #5a5a5a;
 }
@@ -51,6 +51,19 @@ body {
   color: white;
 }
 
+.header_show_estrategia{
+  padding-left: 0px!important; 
+  padding-right: 0px!important;
+  position: relative;
+  text-align: center;
+  color: black;
+  padding-top: 30px;
+}
+
+#sombraredondeadaestrategia{
+text-shadow: 6px 6px 6px black, 0 0 1px black;
+}
+
 .containerr {
     position: relative;
     text-align: center;
@@ -79,7 +92,51 @@ body {
 }
 
 #sombraredondeada{
-text-shadow: 11px 11px 11px black, 0 0 5px black;
+text-shadow: 10px 10px 10px black, 0 0 5px black;
+}
+
+.vintepadtop{
+  padding-top: 20px;
+}
+
+/* CSS DO FOOTER */
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
 }
 
 /* The sucesso - position it at the bottom and in the middle of the screen */
@@ -87,7 +144,7 @@ text-shadow: 11px 11px 11px black, 0 0 5px black;
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
-    background-color: #333; /* Black background color */
+    background-color: #396db2; /* Black background color */
     color: #fff; /* White text color */
     text-align: center; /* Centered text */
     border-radius: 2px; /* Rounded borders */

@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-	<div class="col-12 text-center">
-      <h1>Resumo estratégico - Afilio</h1>
-      <p>{{anunciante.description}}</p>
-    </div>
+<div class="container-fluid header_show_estrategia">
+  <div class="col-12">
+    <h1 id="sombraredondeadaestrategia">Resumo estratégico - Afilio</h1>
+  </div>
 </div>
 <div class="container-fluid">
-	<div class="row">	
-		<div class="col-6 alert alert-secondary">
+	<div class="row vintepadtop">	
+		<div class="col-12 alert alert-primary">
 			<div class="row">
 				<div class="col-md-12" style="text-align: center;">
 					<h5 class="header_cpa">PID: {{anunciante.pid}}</h5>
@@ -50,8 +49,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-6 alert alert-secondary"style="text-align: center;">
-			<h5>Ficha de cadastro</h5><h5>{{anunciante.ficha}}</h5>
+		<div class="col-12 alert alert-info"style="text-align: center;">
+			<h5>Ficha de cadastro</h5>
+			<h5>{{anunciante.ficha}}</h5>
 		</div>
 	</div>
 </div>
