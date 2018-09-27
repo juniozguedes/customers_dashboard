@@ -52,14 +52,14 @@ var $bodyBasketCpl = document.getElementsByTagName('body')[0];
 var $btnCopyBasketCpl = document.getElementById('btnCopyBasketCpl');
 var secretInfoBasketCpl = document.getElementById('mastertag_basket_cpl').innerHTML;
 var resBasketCpl = secretInfoBasketCpl.replace("&lt;","<")
-var res2BasketCpl = resBasketCpl.replace("&gt;",">")
+var res2BasketCpl = resBasketCpl.replace("&gt;",">");
 var res3BasketCpl = res2BasketCpl.replace('amp;','');
 var res4BasketCpl = res3BasketCpl.replace('amp;','');
-var res5BasketCpl = res4BasketCpl.replace("&lt;","<")
-var res6BasketCpl = res5BasketCpl.replace("&gt;",">")
+var res5BasketCpl = res4BasketCpl.replace("&lt;","<");
+var res6BasketCpl = res5BasketCpl.replace("&gt;",">");
 var res7BasketCpl = res6BasketCpl.replace('amp;','');
-var res8BasketCpl = res7BasketCpl.replace('<span class="tag_generica">','')
-var res9BasketCpl = res8BasketCpl.replace('</span>','')
+var res8BasketCpl = res7BasketCpl.replace('<span class="tag_generica">','');
+var res9BasketCpl = res8BasketCpl.replace('</span>','');
 
 var copyToClipboardBasketCpl = function(secretInfoBasketCpl) {
   var $tempInputBasketCpl = document.createElement('INPUT');

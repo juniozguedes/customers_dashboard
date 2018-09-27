@@ -1,6 +1,6 @@
 from app import app
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from flask import Flask, request, redirect, url_for, render_template, session
+from flask import request, redirect, url_for, render_template, session
 from models import Anunciante, User
 from urlparse import urlparse, urljoin
 from datetime import datetime
@@ -36,10 +36,10 @@ def logmein():
     login_user(user, remember=True)
 
     if 'next' in session:
-        next = session['next']
+        prox = session['next']
 
-        if is_safe_url(next):
-            return redirect(next)
+        if is_safe_url(prox):
+            return redirect(prox)
 
 @app.route('/denied')
 def denied():
@@ -106,7 +106,7 @@ def show(pid):
             novo_anunciante.multitarifa = True
         elif multitarifa == '2':
             novo_anunciante.multitarifa = False
-        if request.form['liberada'] == '1': 
+        if request.form['liberada'] == '1':
             novo_anunciante.liberada = True
             novo_anunciante.saida = datetime.utcnow()
             db.session.add(novo_anunciante)
@@ -117,9 +117,8 @@ def show(pid):
             db.session.commit()
         novo_anunciante.ficha = request.form['ficha']            
         db.session.add(novo_anunciante)
-        db.session.commit() 
+        db.session.commit()
         return redirect(url_for('afbase'))
-    
     if request.method == 'DELETE':
         db.session.delete(novo_anunciante)
         db.session.commit()
@@ -136,15 +135,15 @@ def filter(uniquekey):
         dict_test[tag] = remid
 
     if novo_anunciante.role == 'CPA' and novo_anunciante.multitarifa == False:    
-        return render_template('showcpa.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
+        return render_template('showcpa.html', anunciante = novo_anunciante, itertools_resp = dict_test)
     if novo_anunciante.role == 'CPL' and novo_anunciante.multitarifa == False:    
-        return render_template('showcpl.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
+        return render_template('showcpl.html', anunciante = novo_anunciante, itertools_resp = dict_test)
     if novo_anunciante.role == 'CPA' and novo_anunciante.multitarifa == True:    
-        return render_template('showcpamulti.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
+        return render_template('showcpamulti.html', anunciante = novo_anunciante, itertools_resp = dict_test)
     if novo_anunciante.role == 'CPL' and novo_anunciante.multitarifa == True:    
-        return render_template('showcplmulti.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
-    if novo_anunciante.role == 'CPC':    
-        return render_template('showcpc.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
+        return render_template('showcplmulti.html', anunciante = novo_anunciante, itertools_resp = dict_test)
+    if novo_anunciante.role == 'CPC':
+        return render_template('showcpc.html', anunciante = novo_anunciante, itertools_resp = dict_test)
 
 @app.route('/afbase/<int:pid>/edit')
 @login_required
@@ -165,7 +164,7 @@ def inner(pid):    #We passed some id for the user to specify which id will be s
 @login_required
 def liberadas():
 	liberadas = Anunciante.query.filter_by(liberada=True)
-    	return render_template('relatorios.html', anunciantes=liberadas.order_by(Anunciante.saida.desc()).all()) 
+    	return render_template('relatorios.html', anunciantes=liberadas.order_by(Anunciante.saida.desc()).all())
 
 @app.route('/home')
 @login_required
