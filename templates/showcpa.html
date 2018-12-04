@@ -1,15 +1,14 @@
 {% extends 'public_base.html' %}
 {% block content %}
-
-<div class="container-fluid header_show_cpl">
-  <img src="{{url_for('static',filename='img/afilio_banner.jpg')}}" style="width:100%; height:300px">
-  <div class="centered">
-    <h1 id="sombraredondeada">Mastertags & Pixel - Afilio</h1>
-    <p id="sombraredondeada" style="font-weight: bold;">{{anunciante.description}}</p>
-  </div>
+<div class="container">
+	<div class="col-12 text-center">
+      <div></div>
+      <h1>Mastertags & Pixel - Afilio</h1>
+      <p>{{anunciante.partner}}</p>
+    </div>
 </div>
 
-<div class="container vintepadtop">
+<div class="container">
 	<div class="row">
         <div class="col-9">
             <h4 class="header_cpa">Pixel de Conversão</h4>
