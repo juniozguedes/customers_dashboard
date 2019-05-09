@@ -60,15 +60,24 @@ def afbase():
             role = 'CPA'
         elif role =='2':
             role = 'CPL'
+        elif role == '4':
+            role = 'CPV'
         else:
             role = 'CPC'
         multitarifa = request.form['multitarifa']
         if multitarifa == '1':
             multitarifa = True
+            remids = request.form['remids'].split(",")
+            tags = request.form['tags'].split(",")
         else:
             multitarifa = False
-        print(multitarifa)
+        print(role)            
         novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], role, multitarifa, request.form['extra'], request.form['ficha'])
+        if multitarifa:
+            novo_anunciante.remid = remids
+            novo_anunciante.tags = tags
+            db.session.add(novo_anunciante)
+            db.session.commit()
         db.session.add(novo_anunciante)
         db.session.commit()
         return redirect(url_for('afbase'))
@@ -100,6 +109,8 @@ def show(pid):
             novo_anunciante.role = 'CPL'
         elif role == '3':
             novo_anunciante.role = 'CPC'
+        elif role == '4':
+            novo_anunciante.role = 'CPV'
         novo_anunciante.extra = request.form['extra']
         multitarifa = request.form['multitarifa']
         if multitarifa == '1':
@@ -145,6 +156,8 @@ def filter(uniquekey):
         return render_template('showcplmulti.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
     if novo_anunciante.role == 'CPC':    
         return render_template('showcpc.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
+    if novo_anunciante.role == 'CPV' and novo_anunciante.multitarifa == False:    
+        return render_template('showcpv.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
 
 @app.route('/afbase/<int:pid>/edit')
 @login_required

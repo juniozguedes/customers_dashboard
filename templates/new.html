@@ -4,8 +4,8 @@
 	<form action="{{url_for('afbase')}}" method="POST" class="formulario_new">
 		<div class="col-12 form_padding">
 			<input type="text" name="pid" placeholder="Pid (Ex.:2754)">
-			<input type="text" name="partner" placeholder="Ex.:'casasbahia'">
-			<input type="text" name="description" placeholder="Ex.:'Casas Bahia'">
+			<input type="text" name="partner" placeholder="Ex.:casasbahia">
+			<input type="text" name="description" placeholder="Ex.:Casas Bahia">
 		</div>
 		<div class="col-12 form_padding">
 			<select class="custom-select" name="role">
@@ -13,6 +13,7 @@
 		  		<option value="1">CPA</option>
 				<option value="2">CPL</option>
 				<option value="3">CPC</option>
+				<option value="4">CPV</option>
 			</select>
 		</div>
 		<div class="col-12 form_padding">
@@ -22,6 +23,13 @@
 				<option value="2">Não</option>
 			</select>
 		</div>
+		<div class="col-12 form_padding">	
+			<input type="text" name="tags" placeholder="Móveis,Eletrônicos,Calçados">
+		</div>
+		<div class="col-12 form_padding">	
+			<input type="text" name="remids" placeholder="remid_moveis,remid_eletronicos,remid_calçados">
+		</div>
+
 		<div class="col-12 form_padding">	
 			<input type="text" name="extra" placeholder="Informações Extras">
 		</div>
