@@ -1,12 +1,18 @@
 {% extends 'public_base.html' %}
 {% block content %}
 <div class="container">
-	<div class="col-12 text-center">
-      <div></div>
-      <h1>Tracking Code & Pixel de Conversão - Afilio</h1>
-      <p>{{anunciante.description}}</p>
-    </div>
+  <div class="col-12 text-center">
+    <img src="{{url_for('static',filename='img/afilio-maps.png')}}" style="float: left; position: relative;" width="50px" height="50px">
+    <h1 style="float: center; color: #0069a8;">Pixel de Conversão & Tracking Code</h1>
+    <h4 style="float: center; color: #0069a8;">{{anunciante.description}}</h4>
+  </div>
 </div>
+
+    <div class="col-12" style="height: 10px;"></div>
+
+<hr>
+
+    <div class="col-12" style="height: 15px;"></div>
 
 <div class="container">
   <div class="row">

@@ -1,7 +1,7 @@
 from app import app
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask import Flask, request, redirect, url_for, render_template, session
-from models import Anunciante, User
+from models import *
 try:
     from urllib.parse import urlparse, urljoin
 except ImportError:
@@ -70,15 +70,12 @@ def afbase():
             tags = request.form['tags'].split(",")
         else:
             multitarifa = False
-        print(role)            
         novo_anunciante = Anunciante(request.form['pid'], request.form['partner'], request.form['description'], role, multitarifa, request.form['extra'], request.form['ficha'])
         if multitarifa:
             novo_anunciante.remid = remids
             novo_anunciante.tags = tags
-            db.session.add(novo_anunciante)
-            db.session.commit()
-        db.session.add(novo_anunciante)
-        db.session.commit()
+            commit(novo_anunciante)
+        commit(novo_anunciante)
         return redirect(url_for('afbase'))
     if request.method == 'GET':
         if current_user.role == 'admin':
@@ -121,15 +118,12 @@ def show(pid):
         if request.form['liberada'] == '1': 
             novo_anunciante.liberada = True
             novo_anunciante.saida = datetime.utcnow()
-            db.session.add(novo_anunciante)
-            db.session.commit()
+            commit(novo_anunciante)
         if request.form['liberada'] == '2':
             novo_anunciante.liberada = False
-            db.session.add(novo_anunciante)
-            db.session.commit()
+            commit(novo_anunciante)
         novo_anunciante.ficha = request.form['ficha']            
-        db.session.add(novo_anunciante)
-        db.session.commit() 
+        commit(novo_anunciante)
         return redirect(url_for('afbase'))
     return redirect(url_for('filter', uniquekey = novo_anunciante.uniquekey))
 
@@ -180,7 +174,8 @@ def inner(pid):    #We passed some id for the user to specify which id will be s
 @app.route('/afbase/relatorios/liberadas')
 @login_required
 def liberadas():
-    return render_template('relatorios.html', anunciantes=Anunciante.query.filter_by(liberada=True)) 
+    return render_template('relatorios.html', anunciantes=Anunciante.query.filter_by(liberada=True))
+     
 
 @app.route('/searcher', methods=['POST'])
 @login_required

@@ -1,8 +1,50 @@
-{% extends 'public_base.html' %}
+{% extends 'base.html' %}
 {% block content %}
-
-	{% for anunciante in anunciantes %}
-			{{anunciante.pid}}
-			{{anunciante.description}}
-	{% endfor %}
+	<div class="container-fluid">	
+		<div class="container container_index">	
+		    <div class="table-responsive table_index">
+		    	<table class="table table-striped table-sm">
+		            <thead>
+		                <tr>
+		                  <th>PID</th>
+		                  <th>Nome</th>
+		                  <th>Negociação</th>
+		                  <th>Data de liberação</th>
+		                  <th>Status</th>
+		                  <th></th>
+		                  <th></th>
+		            	</tr>
+		            </thead>
+		            <tbody>
+		            	 {% for anunciante in anunciantes %}
+		            	<tr>
+		                	<td><a href="{{url_for('show', pid=anunciante.pid)}}">{{anunciante.pid}}</a></td>
+		                  	<td>{{anunciante.description}}</td>
+		                  	<td>{{anunciante.role}}</td>
+		                  	<td>{{anunciante.saida}}</td>
+		                  	{% if anunciante.liberada == True %}
+		                  	<td><span class="badge badge-success">Liberada</span></td>
+		                  	{% else %}
+		                  	<td><span class="badge badge-danger">Ongoing</span></td>
+		                  	{% endif %}
+		                  	<td><a href="{{url_for('edit', pid=anunciante.pid)}}"><i style="color: #4489d1" class="fas fa-edit fa-w-16 fa-2x"></i></a></td>
+		                  	<td>
+		                  		<form method="GET" action="{{url_for('d', pid=anunciante.pid)}}">
+									<button type="submit" class="btn-sm btn btn-danger">del</button>
+								</form>
+							</td>
+							<td>
+								<a href="{{url_for('inner', pid=anunciante.pid)}}"><i style="color: #b83c85" class="far fa-question-circle fa-w-16 fa-2x"></i></a>
+							</td>
+		                </tr>
+						{% endfor %}
+		            </tbody>
+		        </table>				
+		    </div>
+		    <a href="{{url_for('new')}}"><button type="button" class="btn btn-primary"><span style="color:white">Cadastrar Anunciante</span></button></a>
+		</div>
+	</div>
+	</div>
+	</div>
 {% endblock %}
+</html>

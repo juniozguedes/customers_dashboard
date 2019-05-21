@@ -2,11 +2,17 @@
 {% block content %}
 <div class="container">
 	<div class="col-12 text-center">
-      <div></div>
-      <h1>Tracking Code & Pixel - Afilio</h1>
-      <p>{{anunciante.partner}}</p>
-    </div>
+    <img src="{{url_for('static',filename='img/afilio-maps.png')}}" style="float: left; position: relative;" width="50px" height="50px">
+    <h1 style="float: center; color: #0069a8;">Pixel de Conversão & Tracking Code</h1>
+    <h4 style="float: center; color: #0069a8;">{{anunciante.description}}</h4>
+  </div>
 </div>
+
+    <div class="col-12" style="height: 10px;"></div>
+
+<hr>
+
+    <div class="col-12" style="height: 15px;"></div>
 
 <div class="container">
   <h3 style="text-align: center;">Seu modelo de negociação é CPC, não enviamos tags para esse modelo.</h3> 

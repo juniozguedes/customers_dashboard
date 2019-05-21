@@ -61,3 +61,7 @@ class Anunciante(db.Model):
         self.remid = ['r_0','r_1']
         self.uniquekey = hashlib.sha256(str(random.randrange(1000)).encode('utf-8')).hexdigest()
         self.log = '0'
+
+def commit(anunciante):
+    db.session.add(anunciante)
+    db.session.commit()
