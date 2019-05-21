@@ -46,6 +46,8 @@ class Anunciante(db.Model):
     uniquekey = db.Column(db.Text, unique=True)
     mastertag_imagem = db.Column(db.Boolean, default=False)
     log = db.Column(db.Text)
+    lang = db.Column(db.String(20))
+
     
     def __init__(self, pid, partner, description, role, multitarifa, extra, ficha):
         self.pid = pid
@@ -57,5 +59,5 @@ class Anunciante(db.Model):
         self.ficha = ficha
         self.tags = ['t_0','t_1']
         self.remid = ['r_0','r_1']
-        self.uniquekey = hashlib.sha256(str(random.randrange(1000))).hexdigest()
+        self.uniquekey = hashlib.sha256(str(random.randrange(1000)).encode('utf-8')).hexdigest()
         self.log = '0'

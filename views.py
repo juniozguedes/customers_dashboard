@@ -2,7 +2,10 @@ from app import app
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask import Flask, request, redirect, url_for, render_template, session
 from models import Anunciante, User
-from urlparse import urlparse, urljoin
+try:
+    from urllib.parse import urlparse, urljoin
+except ImportError:
+    from urlparse import urlparse
 from datetime import datetime
 import itertools
 import hashlib
@@ -35,11 +38,7 @@ def logmein():
 
     login_user(user, remember=True)
 
-    if 'next' in session:
-        next = session['next']
-
-        if is_safe_url(next):
-            return redirect(next)
+    return redirect(url_for('afbase'))
 
 @app.route('/denied')
 def denied():
@@ -81,10 +80,11 @@ def afbase():
         db.session.add(novo_anunciante)
         db.session.commit()
         return redirect(url_for('afbase'))
-    if current_user.role == 'admin':
-    	return render_template('index.html', anunciantes = Anunciante.query.all())
-    if current_user.role == 'opec':
-    	return render_template('indexopec.html', anunciantes = Anunciante.query.all())
+    if request.method == 'GET':
+        if current_user.role == 'admin':
+            return render_template('index.html', anunciantes = Anunciante.query.all())
+        if current_user.role == 'opec':
+            return render_template('indexopec.html', anunciantes = Anunciante.query.all())
 
 @app.route('/afbase/new')
 @login_required
@@ -94,11 +94,12 @@ def new():
     elif current_user.role == 'admin':
     	return render_template('new.html')
 
-@app.route('/afbase/<int:pid>', methods=["GET", "PATCH", "DELETE"]) #We defined the page that will retrieve some info
+@app.route('/afbase/<int:pid>/filtering', methods=["GET", "POST"]) #We defined the page that will retrieve some info
+@login_required
 def show(pid):
     novo_anunciante = Anunciante.query.filter_by(pid=pid).first()
 
-    if request.method == 'PATCH':
+    if request.method == 'POST':
         novo_anunciante.pid = request.form['pid']
         novo_anunciante.partner = request.form['partner']
         novo_anunciante.description = request.form['description']
@@ -130,20 +131,22 @@ def show(pid):
         db.session.add(novo_anunciante)
         db.session.commit() 
         return redirect(url_for('afbase'))
-    
-    if request.method == 'DELETE':
-        db.session.delete(novo_anunciante)
-        db.session.commit()
-        return redirect(url_for('afbase'))
-
     return redirect(url_for('filter', uniquekey = novo_anunciante.uniquekey))
+
+@app.route('/afbase/<int:pid>/de', methods=["GET"])
+@login_required
+def d(pid):
+    novo_anunciante = Anunciante.query.filter_by(pid=pid).first()    
+    db.session.delete(novo_anunciante)
+    db.session.commit()
+    return redirect(url_for('afbase'))
 
 @app.route('/afbase/<uniquekey>')
 def filter(uniquekey):
     dict_test = {}
     novo_anunciante = Anunciante.query.filter_by(uniquekey=uniquekey).first()
 
-    for tag, remid in itertools.izip_longest(novo_anunciante.tags, novo_anunciante.remid):
+    for tag, remid in itertools.zip_longest(novo_anunciante.tags, novo_anunciante.remid):
         dict_test[tag] = remid
 
     if novo_anunciante.role == 'CPA' and novo_anunciante.multitarifa == False:    
@@ -178,12 +181,6 @@ def inner(pid):    #We passed some id for the user to specify which id will be s
 @login_required
 def liberadas():
     return render_template('relatorios.html', anunciantes=Anunciante.query.filter_by(liberada=True)) 
-
-@app.route('/home')
-@login_required
-def home():
-	u = current_user
-    	return (u.password)
 
 @app.route('/searcher', methods=['POST'])
 @login_required

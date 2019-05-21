@@ -69,7 +69,7 @@
 		                  	{% endif %}
 		                  	<td><a href="{{url_for('edit', pid=anunciante.pid)}}"><i style="color: #4489d1" class="fas fa-edit fa-w-16 fa-2x"></i></a></td>
 		                  	<td>
-		                  		<form method="POST" action="{{url_for('show', pid=anunciante.pid)}}?_method=DELETE">
+		                  		<form method="GET" action="{{url_for('d', pid=anunciante.pid)}}">
 									<button type="submit" class="btn-sm btn btn-danger">del</button>
 								</form>
 							</td>
