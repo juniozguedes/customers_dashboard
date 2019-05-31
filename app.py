@@ -13,5 +13,5 @@ db = SQLAlchemy(app)
 
 from views import *
 
-if __name__ == '__main__':
-    app.run()
+if __name__ == '__main__':  
+    app.run(debug=True, host='3.80.139.233' port=int("80")) #alterado aws
