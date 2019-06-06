@@ -15,3 +15,4 @@ from views import *
 
 if __name__ == '__main__':  
     app.run(debug=True, host='10.50.21.80', port=80)
+	#app.run(debug=True, host='localhost', port=5000)

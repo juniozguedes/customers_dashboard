@@ -61,6 +61,8 @@ def afbase():
             role = 'CPL'
         elif role == '4':
             role = 'CPV'
+        elif role == '5':
+            role = 'Postview'
         else:
             role = 'CPC'
         multitarifa = request.form['multitarifa']
@@ -109,6 +111,8 @@ def show(pid):
             novo_anunciante.role = 'CPC'
         elif role == '4':
             novo_anunciante.role = 'CPV'
+        elif role == '5':
+            novo_anunciante.role = 'Postview'
         novo_anunciante.extra = request.form['extra']
         multitarifa = request.form['multitarifa']
         if multitarifa == '1':
@@ -153,7 +157,7 @@ def filter(uniquekey):
         return render_template('showcplmulti.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
     if novo_anunciante.role == 'CPC':    
         return render_template('showcpc.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
-    if novo_anunciante.role == 'CPV' and novo_anunciante.multitarifa == False:    
+    if novo_anunciante.role == 'CPV' or 'Postview' and novo_anunciante.multitarifa == False:    
         return render_template('showcpv.html', anunciante = novo_anunciante, itertools_resp = dict_test) 
 
 @app.route('/afbase/<int:pid>/edit')
