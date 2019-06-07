@@ -83,7 +83,7 @@ def afbase():
         return redirect(url_for('afbase'))
     if request.method == 'GET':
         if current_user.role == 'admin':
-            return render_template('index.html', anunciantes = Anunciante.query.all())
+            return render_template('index.html', anunciantes = Anunciante.query.order_by(Anunciante.pid.desc()))
         if current_user.role == 'opec':
             return render_template('indexopec.html', anunciantes = Anunciante.query.all())
 
