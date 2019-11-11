@@ -192,7 +192,7 @@
 			<h4 class="header_cpa">Product</h4>
     	<span class="badge badge-primary">Tag Genérica</span>
       <div class="alert alert-secondary">
-    	 <code><span id="mastertag_product_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=product&id_partner={{anunciante.partner}}&product_id1=<span class="tag_generica">#ID_DO_PRODUTO#</span>&id_category=<span class="tag_generica">#ID_DA_CATEGORIA#</span>&stock=<span class="tag_generica">#ESTOQUE#</span>&product_sku=<span class="tag_generica">#SKU_DO_PRODUTO#</span>&product_name=<span class="tag_generica">#NOME_DO_PRODUTO#</span>&product_desc=<span class="tag_generica">#DESCRICAO_DO_PRODUTO#</span>&product_photo=<span class="tag_generica">#IMAGEM_DO_PRODUTO#</span>&price1=<span class="tag_generica">#PRECO_ATUAL#</span>&price2=<span class="tag_generica">#PRECO_ORIGINAL#</span>&product_currency=<span class="tag_generica">#MOEDA_DA_TRANSACAO#</span>&url_product=#<span class="tag_generica">URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
+    	 <code><span id="mastertag_product_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=product&id_partner={{anunciante.partner}}&product_id1=<span class="tag_generica">#ID_DO_PRODUTO#</span>&id_category=<span class="tag_generica">#ID_DA_CATEGORIA#</span>&product_name=<span class="tag_generica">#NOME_DO_PRODUTO#</span>&price=<span class="tag_generica">#PRECO_ATUAL#</span>&url_product=#<span class="tag_generica">URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
       </div>
     </div>
     <div class="col-3">
@@ -219,14 +219,8 @@
       			 <hr>       					
       			 <h4>product_id1:</h4><p>ID do produto</p>
       			 <h4>id_category:</h4><p>Deve ser populado com o ID da categoria em questão.</p>
-      			 <h4>stock:</h4><p>A ser preenchido com "1" para produto em estoque ou "0" para produto esgotado.</p>
-      			 <h4>product_sku:</h4><p>A ser preenchido com a sku do produto.</p>
       			 <h4>product_name:</h4><p>Inserir o nome do produto.</p>      					  
-      			 <h4>product_desc:</h4><p>Inserir a descriação do produto.(Não deve conter tags html na descrição)</p>
-      			 <h4>product_photo:</h4><p>Inserir a URL da imagem do produto.</p>      					  
-      			 <h4>price1:</h4><p>Inserir o preço atual/com desconto do produto.</p>      					  
-      			 <h4>price2:</h4><p>Inserir o preço original do produto.</p>  
-      			 <h4>product_currency:</h4><p>Inserir o código de três dígitos da moeda correspondente ao valor. Ex.: BRL</p>
+      			 <h4>price:</h4><p>Inserir o preço atual/com desconto do produto.</p>      					  
              <h4>url_product:</h4><p>Deve ser populado com a variável que diz referência a página que a tag está implementada (categoria no caso da category), essa variável deve ser encodada (<a href="https://meyerweb.com/eric/tools/dencoder/">codificada</a>).</p>
       			</div>
       			<div class="modal-footer">
@@ -245,7 +239,7 @@
 			<h4 class="header_cpa">Basket</h4>
     	<span class="badge badge-primary">Tag Genérica</span>
       <div class="alert alert-secondary">
-    	 <code><span id="mastertag_basket_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=basket&id_partner={{anunciante.partner}}&product_id1=<span class="tag_generica">#ID_DOS_PRODUTOS#</span>&amount=<span class="tag_generica">#VALOR_TOTAL#</span>&url_product=<span class="tag_generica">#URL_DO_PRODUTO#</span>&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&order_date=<span class="tag_generica">#DATA_DO_PEDIDO#</span>&order_status=<span class="tag_generica">#STATUS_DO_PEDIDO#</span>&customer_id=<span class="tag_generica">#ID_DO_CLIENTE#</span>&customer_type=<span class="tag_generica">#TIPO_DE_CLIENTE#</span>"&gt;&lt;/script&gt;</span></code>
+    	 <code><span id="mastertag_basket_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=basket&id_partner={{anunciante.partner}}&product_id1=<span class="tag_generica">#ID_DOS_PRODUTOS#</span>&amount=<span class="tag_generica">#VALOR_TOTAL#</span>&url_product=<span class="tag_generica">#URL_DO_PRODUTO#</span>"&gt;&lt;/script&gt;</span></code>
       </div>
     </div>
     <div class="col-3">
@@ -272,11 +266,6 @@
       				<hr> 
       				<h4>product_id1:</h4><p> Inserir o ID do produto. Os ids devem ser separados por "," em casos de múltiplos id´s.</p>
       				<h4>Amount:</h4><p>Inserir o valor total da compra. (** Utilizar ponto como separador decimal. Ex.: 1990.90).</p>
-      				<h4>transaction_id:</h4><p>Inserir o ID da transação.</p>
-      				<h4>order_date:</h4><p>Inserir a data da compra do produto.</p>
-      				<h4>order_status:</h4><p>Inserir "Completed" para confirmado ou "Pending" para pendente..</p>
-      				<h4>customer_id:</h4><p>Inserir o ID do cliente.</p>      					  
-      				<h4>customer_type:</h4><p>Inserir "New" para novo cliente e "Old" para cliente antigo.</p>
       				<h4>url_product:</h4><p>Deve ser populado com a variável que diz referência a página que a tag está implementada (categoria no caso da category), essa variável deve ser encodada (<a href="https://meyerweb.com/eric/tools/dencoder/">codificada</a>).</p>
       			</div>
       			<div class="modal-footer">
@@ -294,7 +283,7 @@
             <h4 class="header_cpa">Transaction</h4>
             <span class="badge badge-primary">Tag Genérica</span>
             <div class="alert alert-secondary">
-                <code><span id="mastertag_transaction_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=transaction&id_partner={{anunciante.partner}}&amount=<span class="tag_generica">#VALOR_TOTAL#</span>&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&customer_type=<span class="tag_generica">#TIPO_DE_CLIENTE#</span>&product_id1=<span class="tag_generica">#IDS_DOS_PRODUTOS#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>&order_date=<span class="tag_generica">#DATA_DO_PEDIDO#</span>&order_status=<span class="tag_generica">#STATUS_DO_PEDIDO#</span>&customer_id=<span class="tag_generica">#ID_DO_CLIENTE#</span>"&gt;&lt;/script&gt;</span></code>
+                <code><span id="mastertag_transaction_cpa">&lt;script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid={{anunciante.pid}}&type=transaction&id_partner={{anunciante.partner}}&amount=<span class="tag_generica">#VALOR_TOTAL#</span>&transaction_id=<span class="tag_generica">#ID_DO_PEDIDO#</span>&url_product=<span class="tag_generica">#URL_DA_PAGINA#</span>"&gt;&lt;/script&gt;</span></code>
             </div>
         </div>
         <div class="col-3">

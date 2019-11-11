@@ -148,7 +148,7 @@ def filter(uniquekey):
     dict_test = {}
     novo_anunciante = Anunciante.query.filter_by(uniquekey=uniquekey).first()
 
-    for tag, remid in itertools.zip_longest(novo_anunciante.tags, novo_anunciante.remid):
+    for tag, remid in itertools.izip_longest(novo_anunciante.tags, novo_anunciante.remid):
         dict_test[tag] = remid
 
     if novo_anunciante.role == 'CPA' and novo_anunciante.multitarifa == False:    
